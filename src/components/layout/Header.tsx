@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu } from "lucide-react";
+import { BookOpen, Menu, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Submit", href: "/submit" },
     { label: "Current Issue", href: "/current-issue" },
     { label: "Archives", href: "/archives" },
-    { label: "About", href: "/about" },
-    { label: "For Authors", href: "/for-authors" },
-    { label: "Editorial Board", href: "/editorial-board" },
-    { label: "Policies", href: "/policies" },
-    { label: "News", href: "/news" },
     { label: "Contact", href: "/contact" },
+    { label: "News", href: "/news" },
   ];
 
   return (
@@ -40,15 +43,70 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground transition-smooth rounded-md hover:bg-banner-foreground/10"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground transition-smooth rounded-md hover:bg-banner-foreground/10 flex items-center gap-1">
+                About <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to="/about">Overview of AJVS</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/editorial-board">Editorial Board</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/for-authors">Author Guidelines</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/policies">Publication Ethics</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground transition-smooth rounded-md hover:bg-banner-foreground/10 flex items-center gap-1">
+                Manuscripts <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to="/submit">Submit Manuscript</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/manuscripts">Track Submission</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/reviewer-dashboard">Reviewer Login</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground transition-smooth rounded-md hover:bg-banner-foreground/10 flex items-center gap-1">
+                Publications <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to="/current-issue">Current Issue</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/archives">Archives</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground transition-smooth rounded-md hover:bg-banner-foreground/10 flex items-center gap-1">
+                Contact <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact">Contact Information</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/news">News & Announcements</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* CTA Buttons */}
