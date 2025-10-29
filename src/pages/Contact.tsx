@@ -8,6 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
+});
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,14 +29,18 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      toast.error("Please fill in all fields");
+    // Validate input with zod schema
+    const validationResult = contactSchema.safeParse(formData);
+    
+    if (!validationResult.success) {
+      const firstError = validationResult.error.errors[0];
+      toast.error(firstError.message);
       return;
     }
 
     setSubmitting(true);
     try {
-      // Simulate email send
+      // Simulate email send (will be replaced with actual edge function call)
       await new Promise(resolve => setTimeout(resolve, 1000));
       toast.success("Message sent successfully! We'll get back to you soon.");
       setFormData({ name: "", email: "", subject: "", message: "" });

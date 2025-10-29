@@ -20,7 +20,6 @@ const Auth = () => {
     password: "",
     fullName: "",
     institution: "",
-    role: "author" as const,
     orcid: "",
   });
 
@@ -60,7 +59,6 @@ const Auth = () => {
           data: {
             full_name: signUpData.fullName,
             institution: signUpData.institution,
-            role: signUpData.role,
             orcid: signUpData.orcid,
           },
         },
@@ -75,13 +73,12 @@ const Auth = () => {
           email: signUpData.email,
           full_name: signUpData.fullName,
           institution: signUpData.institution,
-          role: signUpData.role,
           orcid: signUpData.orcid,
         });
 
         if (profileError) throw profileError;
 
-        toast.success("Account created successfully!");
+        toast.success("Account created successfully! An admin will assign your role.");
         navigate("/dashboard");
       }
     } catch (error: any) {
@@ -176,22 +173,6 @@ const Auth = () => {
                     onChange={(e) => setSignUpData({ ...signUpData, institution: e.target.value })}
                     required
                   />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-role">Role</Label>
-                  <Select
-                    value={signUpData.role}
-                    onValueChange={(value: any) => setSignUpData({ ...signUpData, role: value })}
-                  >
-                    <SelectTrigger id="signup-role">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="author">Author</SelectItem>
-                      <SelectItem value="reviewer">Reviewer</SelectItem>
-                      <SelectItem value="reader">Reader</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="signup-orcid">ORCID (Optional)</Label>

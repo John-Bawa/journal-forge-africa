@@ -6,17 +6,56 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Simple in-memory rate limiter (resets on cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 100;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Get IP for rate limiting
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+    
+    // Check rate limit
+    if (!checkRateLimit(ip)) {
+      console.warn(`Rate limit exceeded for RSS feed request from IP: ${ip}`);
+      return new Response(
+        JSON.stringify({ error: "Rate limit exceeded. Maximum 100 requests per hour." }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 429,
+        }
+      );
+    }
+
+    console.log(`RSS feed request from IP: ${ip}`);
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Fetch latest published articles
+    // Fetch latest published articles (limit to 50 for RSS)
     const { data: articles, error } = await supabase
       .from("published_articles")
       .select(`
@@ -34,7 +73,10 @@ serve(async (req) => {
       .order("published_date", { ascending: false })
       .limit(50);
 
-    if (error) throw error;
+    if (error) {
+      console.error("Error fetching articles for RSS:", error);
+      throw error;
+    }
 
     const rss = generateRssFeed(articles || []);
 
@@ -42,12 +84,13 @@ serve(async (req) => {
       headers: {
         ...corsHeaders,
         "Content-Type": "application/rss+xml",
+        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
       },
     });
   } catch (error: any) {
     console.error("Error generating RSS feed:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Internal server error" }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
@@ -72,7 +115,7 @@ function generateRssFeed(articles: any[]): string {
       <author>${escapeXml(authors)}</author>
       <pubDate>${new Date(article.published_date).toUTCString()}</pubDate>
       <guid isPermaLink="true">https://ajvs.org/article/${article.id}</guid>
-      ${manuscript?.doi ? `<doi xmlns="http://www.crossref.org/schema/4.4.0">${manuscript.doi}</doi>` : ""}
+      ${manuscript?.doi ? `<doi xmlns="http://www.crossref.org/schema/4.4.0">${escapeXml(manuscript.doi)}</doi>` : ""}
       ${manuscript?.keywords?.map((k: string) => `<category>${escapeXml(k)}</category>`).join("") || ""}
       <source>
         <title>African Journal of Veterinary Sciences</title>
@@ -106,6 +149,7 @@ function generateRssFeed(articles: any[]): string {
 }
 
 function escapeXml(text: string): string {
+  if (!text) return "";
   return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")

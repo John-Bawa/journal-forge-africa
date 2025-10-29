@@ -6,16 +6,100 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Simple in-memory rate limiter (resets on cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 100;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
+function validateOaiParams(url: URL): { valid: boolean; error?: string } {
+  const verb = url.searchParams.get("verb");
+  const validVerbs = ["Identify", "ListRecords", "GetRecord", "ListIdentifiers", "ListMetadataFormats"];
+  
+  if (!verb) {
+    return { valid: false, error: "Missing required parameter: verb" };
+  }
+  
+  if (!validVerbs.includes(verb)) {
+    return { valid: false, error: `Invalid verb: ${verb}` };
+  }
+  
+  if (verb === "GetRecord") {
+    const identifier = url.searchParams.get("identifier");
+    if (!identifier) {
+      return { valid: false, error: "GetRecord requires identifier parameter" };
+    }
+    // Validate identifier format
+    if (!identifier.match(/^oai:ajvs\.org:article\/[a-f0-9-]+$/)) {
+      return { valid: false, error: "Invalid identifier format" };
+    }
+  }
+  
+  const metadataPrefix = url.searchParams.get("metadataPrefix");
+  if (metadataPrefix && metadataPrefix !== "oai_dc") {
+    return { valid: false, error: "Only oai_dc metadata format is supported" };
+  }
+  
+  return { valid: true };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Get IP for rate limiting
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+    
+    // Check rate limit
+    if (!checkRateLimit(ip)) {
+      console.warn(`Rate limit exceeded for IP: ${ip}`);
+      return new Response(
+        generateError("badRequest", "Rate limit exceeded. Maximum 100 requests per hour."),
+        {
+          headers: { ...corsHeaders, "Content-Type": "text/xml" },
+          status: 429,
+        }
+      );
+    }
+
     const url = new URL(req.url);
-    const verb = url.searchParams.get("verb");
+    
+    // Validate parameters
+    const validation = validateOaiParams(url);
+    if (!validation.valid) {
+      console.warn(`Invalid OAI-PMH request: ${validation.error}`);
+      return new Response(
+        generateError("badArgument", validation.error || "Invalid request parameters"),
+        {
+          headers: { ...corsHeaders, "Content-Type": "text/xml" },
+          status: 400,
+        }
+      );
+    }
+
+    const verb = url.searchParams.get("verb")!;
     const identifier = url.searchParams.get("identifier");
     const metadataPrefix = url.searchParams.get("metadataPrefix") || "oai_dc";
+
+    console.log(`OAI-PMH request: verb=${verb}, ip=${ip}`);
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -54,7 +138,7 @@ serve(async (req) => {
   } catch (error: any) {
     console.error("Error in OAI-PMH handler:", error);
     return new Response(
-      generateError("badRequest", error.message),
+      generateError("badRequest", "Internal server error"),
       {
         headers: {
           ...corsHeaders,
@@ -108,11 +192,12 @@ async function generateListRecords(supabase: any) {
         keywords,
         doi,
         subject_area,
-        manuscript_authors (full_name, institution, email)
+        manuscript_authors (full_name, institution)
       ),
       issues (volume, number, year)
     `)
-    .order("published_date", { ascending: false });
+    .order("published_date", { ascending: false })
+    .limit(1000);
 
   if (error) throw error;
 
@@ -148,7 +233,7 @@ async function generateGetRecord(supabase: any, identifier: string) {
         keywords,
         doi,
         subject_area,
-        manuscript_authors (full_name, institution, email)
+        manuscript_authors (full_name, institution)
       ),
       issues (volume, number, year)
     `)
@@ -176,7 +261,8 @@ async function generateListIdentifiers(supabase: any) {
   const { data: articles, error } = await supabase
     .from("published_articles")
     .select("id, created_at")
-    .order("published_date", { ascending: false });
+    .order("published_date", { ascending: false })
+    .limit(1000);
 
   if (error) throw error;
 
@@ -240,7 +326,7 @@ function generateRecord(article: any) {
                    xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
                    http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
           <dc:title>${escapeXml(manuscript?.title || "")}</dc:title>
-          ${authors.map((a: any) => `<dc:creator>${escapeXml(a.full_name)}</dc:creator>`).join("")}
+          ${authors.map((a: any) => `<dc:creator>${escapeXml(a.full_name)} (${escapeXml(a.institution)})</dc:creator>`).join("")}
           <dc:subject>${escapeXml(manuscript?.subject_area || "")}</dc:subject>
           ${manuscript?.keywords?.map((k: string) => `<dc:subject>${escapeXml(k)}</dc:subject>`).join("") || ""}
           <dc:description>${escapeXml(manuscript?.abstract || "")}</dc:description>
@@ -266,11 +352,12 @@ function generateError(code: string, message: string) {
          http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
   <responseDate>${new Date().toISOString()}</responseDate>
   <request>https://ajvs.org/oai</request>
-  <error code="${code}">${message}</error>
+  <error code="${code}">${escapeXml(message)}</error>
 </OAI-PMH>`;
 }
 
 function escapeXml(text: string): string {
+  if (!text) return "";
   return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
