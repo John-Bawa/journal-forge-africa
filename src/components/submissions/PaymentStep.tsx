@@ -12,21 +12,16 @@ interface PaymentStepProps {
   onPaymentComplete: () => void;
 }
 
-export function PaymentStep({ 
-  manuscriptId, 
-  amount = 50000, 
-  currency = "NGN",
-  onPaymentComplete 
-}: PaymentStepProps) {
+export function PaymentStep({ manuscriptId, amount = 30000, currency = "NGN", onPaymentComplete }: PaymentStepProps) {
   const [loading, setLoading] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'processing' | 'completed' | 'failed'>('pending');
+  const [paymentStatus, setPaymentStatus] = useState<"pending" | "processing" | "completed" | "failed">("pending");
 
   const initializePayment = async () => {
     setLoading(true);
-    setPaymentStatus('processing');
+    setPaymentStatus("processing");
 
     try {
-      const { data, error } = await supabase.functions.invoke('initialize-payment', {
+      const { data, error } = await supabase.functions.invoke("initialize-payment", {
         body: {
           manuscriptId,
           amount,
@@ -38,11 +33,7 @@ export function PaymentStep({
 
       if (data.authorization_url) {
         // Open Paystack payment page
-        const paymentWindow = window.open(
-          data.authorization_url,
-          'Paystack Payment',
-          'width=600,height=700'
-        );
+        const paymentWindow = window.open(data.authorization_url, "Paystack Payment", "width=600,height=700");
 
         // Poll for payment completion
         const pollInterval = setInterval(async () => {
@@ -53,9 +44,9 @@ export function PaymentStep({
         }, 1000);
       }
     } catch (error: any) {
-      console.error('Payment initialization error:', error);
-      toast.error(error.message || 'Failed to initialize payment');
-      setPaymentStatus('failed');
+      console.error("Payment initialization error:", error);
+      toast.error(error.message || "Failed to initialize payment");
+      setPaymentStatus("failed");
     } finally {
       setLoading(false);
     }
@@ -63,26 +54,26 @@ export function PaymentStep({
 
   const verifyPayment = async (reference: string) => {
     try {
-      const { data, error } = await supabase.functions.invoke('verify-payment', {
+      const { data, error } = await supabase.functions.invoke("verify-payment", {
         body: { reference },
       });
 
       if (error) throw error;
 
-      if (data.status === 'success') {
-        setPaymentStatus('completed');
-        toast.success('Payment successful! Your manuscript has been submitted.');
+      if (data.status === "success") {
+        setPaymentStatus("completed");
+        toast.success("Payment successful! Your manuscript has been submitted.");
         setTimeout(() => {
           onPaymentComplete();
         }, 2000);
       } else {
-        setPaymentStatus('failed');
-        toast.error('Payment was not completed. Please try again.');
+        setPaymentStatus("failed");
+        toast.error("Payment was not completed. Please try again.");
       }
     } catch (error: any) {
-      console.error('Payment verification error:', error);
-      toast.error('Failed to verify payment');
-      setPaymentStatus('failed');
+      console.error("Payment verification error:", error);
+      toast.error("Failed to verify payment");
+      setPaymentStatus("failed");
     }
   };
 
@@ -93,9 +84,7 @@ export function PaymentStep({
           <CreditCard className="w-5 h-5" />
           Article Processing Charge (APC)
         </CardTitle>
-        <CardDescription>
-          Complete payment to submit your manuscript for review
-        </CardDescription>
+        <CardDescription>Complete payment to submit your manuscript for review</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="bg-secondary/20 p-6 rounded-lg">
@@ -110,14 +99,14 @@ export function PaymentStep({
           </p>
         </div>
 
-        {paymentStatus === 'completed' && (
+        {paymentStatus === "completed" && (
           <div className="flex items-center gap-2 p-4 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg">
             <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
             <span className="text-green-800 dark:text-green-200">Payment completed successfully!</span>
           </div>
         )}
 
-        {paymentStatus === 'failed' && (
+        {paymentStatus === "failed" && (
           <div className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg">
             <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
             <span className="text-red-800 dark:text-red-200">Payment failed. Please try again.</span>
@@ -126,13 +115,13 @@ export function PaymentStep({
 
         <Button
           onClick={initializePayment}
-          disabled={loading || paymentStatus === 'completed'}
+          disabled={loading || paymentStatus === "completed"}
           className="w-full"
           size="lg"
         >
           {loading ? (
             <>Processing...</>
-          ) : paymentStatus === 'completed' ? (
+          ) : paymentStatus === "completed" ? (
             <>Payment Completed</>
           ) : (
             <>Proceed to Payment</>

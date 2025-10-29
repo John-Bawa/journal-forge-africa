@@ -5,47 +5,47 @@ import { Mail } from "lucide-react";
 
 const EditorialBoard = () => {
   const editorInChief = {
-    name: "Prof. Ibrahim Musa Abdullahi",
+    name: "Dr. Negedu Onogu Ameji",
     title: "Editor-in-Chief",
     affiliation: "Faculty of Veterinary Medicine, University of Jos, Nigeria",
     specialization: "Veterinary Pathology & Infectious Diseases",
     email: "editor@ajvs.org",
-    bio: "Prof. Abdullahi has over 30 years of experience in veterinary pathology and has published extensively on infectious diseases in livestock across Africa.",
+    bio: "Dr. Negedu Onogu Ameji has over 20 years of experience in veterinary pathology and has published extensively on infectious diseases in livestock across Africa.",
   };
 
   const managingEditor = {
-    name: "Dr. Fatima Yusuf Mohammed",
+    name: "Dr. ",
     title: "Managing Editor",
     affiliation: "Faculty of Veterinary Medicine, University of Jos, Nigeria",
     specialization: "Veterinary Public Health",
     email: "managing@ajvs.org",
-    bio: "Dr. Mohammed specializes in One Health approaches and zoonotic disease control in West Africa.",
+    bio: "..................",
   };
 
   const sectionEditors = [
     {
-      name: "Prof. Emmanuel Chukwudi Okonkwo",
+      name: "Dr",
       section: "Veterinary Medicine & Surgery",
-      affiliation: "University of Nigeria, Nsukka",
-      email: "e.okonkwo@unn.edu.ng",
+      affiliation: "University of ",
+      email: "edu.ng",
     },
     {
-      name: "Dr. Aisha Bello Usman",
+      name: "Dr. ",
       section: "Animal Production & Nutrition",
       affiliation: "Ahmadu Bello University, Zaria",
-      email: "a.usman@abu.edu.ng",
+      email: "edu.ng",
     },
     {
-      name: "Prof. David Oluwaseun Adeyemi",
+      name: "Prof.",
       section: "Veterinary Microbiology & Parasitology",
-      affiliation: "University of Ibadan, Nigeria",
-      email: "d.adeyemi@ui.edu.ng",
+      affiliation: "University of",
+      email: ".edu.ng",
     },
     {
-      name: "Dr. Grace Nnenna Okeke",
+      name: "Dr. ",
       section: "Veterinary Pathology & Pharmacology",
-      affiliation: "University of Jos, Nigeria",
-      email: "g.okeke@unijos.edu.ng",
+      affiliation: "University of",
+      email: "......",
     },
     {
       name: "Prof. James Mwangi Kariuki",
@@ -57,22 +57,22 @@ const EditorialBoard = () => {
 
   const advisoryBoard = [
     {
-      name: "Prof. Sarah Cleaveland",
+      name: "Prof.",
       affiliation: "University of Glasgow, UK",
       specialization: "One Health & Epidemiology",
     },
     {
-      name: "Prof. Thumbi Mwangi",
+      name: "Prof.",
       affiliation: "University of Nairobi, Kenya",
       specialization: "Veterinary Epidemiology",
     },
     {
-      name: "Prof. Dirk Pfeiffer",
+      name: "Prof.",
       affiliation: "City University of Hong Kong",
       specialization: "Veterinary Public Health",
     },
     {
-      name: "Prof. Bassirou Bonfoh",
+      name: "Prof.",
       affiliation: "Swiss Tropical and Public Health Institute",
       specialization: "One Health in Africa",
     },
@@ -81,13 +81,11 @@ const EditorialBoard = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
       <Header />
-      
+
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Editorial Board
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Editorial Board</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Leading experts in veterinary sciences guiding AJVS to excellence
             </p>
@@ -100,7 +98,10 @@ const EditorialBoard = () => {
               <CardContent className="p-8">
                 <div className="text-center mb-4">
                   <div className="w-24 h-24 rounded-full gradient-royal mx-auto mb-4 flex items-center justify-center text-4xl font-bold text-white">
-                    {editorInChief.name.split(' ').map(n => n[0]).join('')}
+                    {editorInChief.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
                   <h3 className="text-2xl font-serif font-bold">{editorInChief.name}</h3>
                   <p className="text-primary font-semibold">{editorInChief.title}</p>
@@ -125,7 +126,10 @@ const EditorialBoard = () => {
               <CardContent className="p-8">
                 <div className="text-center mb-4">
                   <div className="w-24 h-24 rounded-full gradient-cyan mx-auto mb-4 flex items-center justify-center text-4xl font-bold text-white">
-                    {managingEditor.name.split(' ').map(n => n[0]).join('')}
+                    {managingEditor.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
                   <h3 className="text-2xl font-serif font-bold">{managingEditor.name}</h3>
                   <p className="text-primary font-semibold">{managingEditor.title}</p>
@@ -152,7 +156,10 @@ const EditorialBoard = () => {
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
-                        {editor.name.split(' ').map(n => n[0]).join('')}
+                        {editor.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </div>
                       <div className="flex-1">
                         <h3 className="font-serif font-bold text-lg mb-1">{editor.name}</h3>
@@ -192,9 +199,13 @@ const EditorialBoard = () => {
           <Card className="glass p-8 text-center">
             <h2 className="text-2xl font-serif font-bold mb-4">Join Our Reviewer Panel</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              AJVS welcomes qualified veterinary scientists to join our peer review panel. If you have expertise in veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
+              AJVS welcomes qualified veterinary scientists to join our peer review panel. If you have expertise in
+              veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
             </p>
-            <a href="mailto:editor@ajvs.org" className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+            <a
+              href="mailto:editor@ajvs.org"
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+            >
               <Mail className="w-4 h-4" />
               Contact Editorial Office
             </a>
