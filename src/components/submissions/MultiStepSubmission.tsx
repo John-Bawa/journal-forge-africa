@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PaymentStep } from "./PaymentStep";
 
 interface Author {
   full_name: string;
@@ -21,6 +22,7 @@ interface Author {
 export const MultiStepSubmission = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+  const [manuscriptId, setManuscriptId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     title: "",
     abstract: "",
@@ -48,11 +50,16 @@ export const MultiStepSubmission = () => {
     { number: 3, title: "File Uploads" },
     { number: 4, title: "References" },
     { number: 5, title: "Declarations" },
-    { number: 6, title: "Review & Submit" },
+    { number: 6, title: "Payment" },
+    { number: 7, title: "Review & Submit" },
   ];
 
-  const handleNext = () => {
-    if (currentStep < 6) setCurrentStep(currentStep + 1);
+  const handleNext = async () => {
+    // Save draft before payment step
+    if (currentStep === 5 && !manuscriptId) {
+      await saveDraft();
+    }
+    if (currentStep < 7) setCurrentStep(currentStep + 1);
   };
 
   const handleBack = () => {
@@ -69,7 +76,7 @@ export const MultiStepSubmission = () => {
     toast.success("Author added");
   };
 
-  const handleSubmit = async () => {
+  const saveDraft = async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
@@ -88,8 +95,7 @@ export const MultiStepSubmission = () => {
           funding_statement: formData.funding_statement,
           conflict_statement: formData.conflict_statement,
           submitting_author_id: user.id,
-          status: "submitted",
-          submission_date: new Date().toISOString(),
+          status: "draft",
         })
         .select()
         .single();
@@ -110,11 +116,18 @@ export const MultiStepSubmission = () => {
         });
       }
 
-      toast.success("Manuscript submitted successfully!");
-      navigate("/manuscripts");
+      setManuscriptId(manuscript.id);
+      toast.success("Draft saved! Please proceed to payment.");
     } catch (error: any) {
       toast.error(error.message);
     }
+  };
+
+  const handlePaymentComplete = () => {
+    toast.success("Payment successful! Manuscript submitted for review.");
+    setTimeout(() => {
+      navigate("/manuscripts");
+    }, 2000);
   };
 
   return (
@@ -415,28 +428,50 @@ export const MultiStepSubmission = () => {
             </motion.div>
           )}
 
-          {/* Step 6: Review & Submit */}
-          {currentStep === 6 && (
+          {/* Step 6: Payment */}
+          {currentStep === 6 && manuscriptId && (
             <motion.div
               key="step6"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
+            >
+              <PaymentStep 
+                manuscriptId={manuscriptId}
+                amount={50000}
+                currency="NGN"
+                onPaymentComplete={handlePaymentComplete}
+              />
+            </motion.div>
+          )}
+
+          {/* Step 7: Review & Submit */}
+          {currentStep === 7 && (
+            <motion.div
+              key="step7"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
               className="space-y-6"
             >
-              <h2 className="text-2xl font-serif font-bold">Review & Submit</h2>
-              <Card className="p-4 bg-secondary/20">
-                <h3 className="font-semibold mb-2">Manuscript Summary</h3>
-                <p><strong>Title:</strong> {formData.title}</p>
-                <p><strong>Type:</strong> {formData.manuscript_type}</p>
-                <p><strong>Subject:</strong> {formData.subject_area}</p>
-                <p><strong>Authors:</strong> {formData.authors.length}</p>
-                <p><strong>Keywords:</strong> {formData.keywords}</p>
+              <h2 className="text-2xl font-serif font-bold">Submission Complete!</h2>
+              <Card className="p-6 bg-secondary/20 text-center">
+                <Check className="w-16 h-16 mx-auto mb-4 text-green-600" />
+                <h3 className="font-semibold text-xl mb-2">Payment Successful</h3>
+                <p className="mb-4">Your manuscript has been submitted for review.</p>
+                <Card className="p-4 bg-background/50 text-left">
+                  <h4 className="font-semibold mb-2">Manuscript Summary</h4>
+                  <p><strong>Title:</strong> {formData.title}</p>
+                  <p><strong>Type:</strong> {formData.manuscript_type}</p>
+                  <p><strong>Subject:</strong> {formData.subject_area}</p>
+                  <p><strong>Authors:</strong> {formData.authors.length}</p>
+                </Card>
               </Card>
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                 <p className="text-sm">
-                  By submitting this manuscript, you confirm that all information is accurate and
+                  You will receive an email confirmation shortly. The editorial team will review your submission and contact you within 7-10 business days.
                   all authors have approved the submission. An Article Processing Charge (APC) of
                   ₦50,000 will be required upon acceptance.
                 </p>
@@ -447,7 +482,11 @@ export const MultiStepSubmission = () => {
 
           {/* Navigation Buttons */}
           <div className="flex justify-between mt-8 pt-6 border-t">
-            <Button onClick={handleBack} variant="outline" disabled={currentStep === 1}>
+            <Button 
+              onClick={handleBack} 
+              variant="outline" 
+              disabled={currentStep === 1 || currentStep === 6 || currentStep === 7}
+            >
               <ChevronLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
@@ -456,11 +495,11 @@ export const MultiStepSubmission = () => {
                 Next
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
-            ) : (
-              <Button onClick={handleSubmit} className="bg-primary">
-                Submit Manuscript
+            ) : currentStep === 7 ? (
+              <Button onClick={() => navigate("/manuscripts")} className="bg-primary">
+                Go to My Manuscripts
               </Button>
-            )}
+            ) : null}
           </div>
         </Card>
       </div>

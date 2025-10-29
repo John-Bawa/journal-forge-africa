@@ -1,0 +1,113 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.77.0';
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
+Deno.serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+    );
+
+    const { reference } = await req.json();
+
+    if (!reference) {
+      return new Response(
+        JSON.stringify({ error: 'Missing payment reference' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Verifying payment with reference:', reference);
+
+    // Verify transaction with Paystack
+    const paystackResponse = await fetch(
+      `https://api.paystack.co/transaction/verify/${reference}`,
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${Deno.env.get('PAYSTACK_SECRET_KEY')}`,
+        },
+      }
+    );
+
+    const paystackData = await paystackResponse.json();
+
+    if (!paystackResponse.ok || !paystackData.status) {
+      console.error('Paystack verification error:', paystackData);
+      return new Response(
+        JSON.stringify({ error: 'Payment verification failed', details: paystackData }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const transaction = paystackData.data;
+
+    // Update payment record
+    const { error: updateError } = await supabaseClient
+      .from('payments')
+      .update({
+        status: transaction.status === 'success' ? 'completed' : 'failed',
+        payment_date: transaction.paid_at ? new Date(transaction.paid_at).toISOString() : null,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('paystack_reference', reference);
+
+    if (updateError) {
+      console.error('Error updating payment:', updateError);
+      return new Response(
+        JSON.stringify({ error: 'Failed to update payment record' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // If payment successful, update manuscript status
+    if (transaction.status === 'success') {
+      const { data: payment } = await supabaseClient
+        .from('payments')
+        .select('manuscript_id')
+        .eq('paystack_reference', reference)
+        .single();
+
+      if (payment) {
+        await supabaseClient
+          .from('manuscripts')
+          .update({
+            status: 'submitted',
+            submission_date: new Date().toISOString(),
+          })
+          .eq('id', payment.manuscript_id)
+          .eq('status', 'draft');
+
+        console.log('Payment verified and manuscript submitted:', {
+          reference,
+          manuscript_id: payment.manuscript_id,
+        });
+      }
+    }
+
+    return new Response(
+      JSON.stringify({
+        status: transaction.status,
+        amount: transaction.amount / 100,
+        currency: transaction.currency,
+        paid_at: transaction.paid_at,
+        message: transaction.status === 'success' ? 'Payment verified successfully' : 'Payment failed',
+      }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    return new Response(
+      JSON.stringify({ error: 'Internal server error' }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
+});

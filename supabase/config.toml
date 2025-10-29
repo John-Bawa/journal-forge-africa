@@ -5,3 +5,9 @@ verify_jwt = false
 
 [functions.generate-rss-feed]
 verify_jwt = false
+
+[functions.initialize-payment]
+verify_jwt = true
+
+[functions.verify-payment]
+verify_jwt = false
