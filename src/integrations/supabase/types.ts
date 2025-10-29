@@ -223,8 +223,10 @@ export type Database = {
           id: string
           manuscript_id: string
           payment_date: string | null
+          payment_method: string
           paystack_access_code: string | null
           paystack_reference: string | null
+          receipt_path: string | null
           status: string
           updated_at: string
           user_id: string
@@ -236,8 +238,10 @@ export type Database = {
           id?: string
           manuscript_id: string
           payment_date?: string | null
+          payment_method?: string
           paystack_access_code?: string | null
           paystack_reference?: string | null
+          receipt_path?: string | null
           status?: string
           updated_at?: string
           user_id: string
@@ -249,8 +253,10 @@ export type Database = {
           id?: string
           manuscript_id?: string
           payment_date?: string | null
+          payment_method?: string
           paystack_access_code?: string | null
           paystack_reference?: string | null
+          receipt_path?: string | null
           status?: string
           updated_at?: string
           user_id?: string
