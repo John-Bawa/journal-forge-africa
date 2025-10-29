@@ -16,11 +16,64 @@ serve(async (req) => {
   }
 
   try {
-    const { reviewIds }: BulkReminderRequest = await req.json();
+    // Verify JWT and get user
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: "Missing authorization header" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 401,
+        }
+      );
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    
+    // Use anon key with JWT for auth check
+    const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey, {
+      global: {
+        headers: { Authorization: authHeader },
+      },
+    });
+
+    const { data: { user }, error: authError } = await supabaseAuth.auth.getUser();
+    
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 401,
+        }
+      );
+    }
+
+    // Check if user has admin/editor/secretary role
+    const { data: hasRole, error: roleError } = await supabaseAuth.rpc(
+      "has_any_role",
+      { 
+        _user_id: user.id, 
+        _roles: ['super_admin', 'editor', 'secretary']
+      }
+    );
+
+    if (roleError || !hasRole) {
+      return new Response(
+        JSON.stringify({ error: "Insufficient permissions. Admin, editor, or secretary role required." }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 403,
+        }
+      );
+    }
+
+    const { reviewIds }: BulkReminderRequest = await req.json();
+
+    // Use service role key for data fetching
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Fetch review details
     const { data: reviews, error } = await supabase
