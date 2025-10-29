@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle } from "lucide-react";
-import heroBackground from "@/assets/hero-background.jpg";
+import heroBackground from "@/assets/hero-background.webp";
 
 const Index = () => {
   return (
