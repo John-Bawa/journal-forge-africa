@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu, ChevronDown } from "lucide-react";
+import { BookOpen, Menu, LogOut, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,6 +24,18 @@ import {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      toast.success("Signed out successfully");
+      navigate("/");
+    } catch (error: any) {
+      toast.error("Error signing out");
+    }
+  };
 
   const mobileNavSections = [
     {
@@ -37,7 +52,7 @@ const Header = () => {
       links: [
         { label: "Submit Manuscript", href: "/submit" },
         { label: "Track Submission", href: "/manuscripts" },
-        { label: "Reviewer Login", href: "/reviewer-dashboard" },
+        { label: "Reviewer Login", href: "/reviews" },
       ],
     },
     {
@@ -124,14 +139,14 @@ const Header = () => {
                         </div>
                         <p className="text-sm text-muted-foreground">Start your submission process</p>
                       </Link>
-                      <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Track Submission</div>
-                        <p className="text-sm text-muted-foreground">Check your manuscript status</p>
-                      </Link>
-                      <Link to="/reviewer-dashboard" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Login</div>
-                        <p className="text-sm text-muted-foreground">Access peer review dashboard</p>
-                      </Link>
+                       <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
+                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Track Submission</div>
+                         <p className="text-sm text-muted-foreground">Check your manuscript status</p>
+                       </Link>
+                       <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
+                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Login</div>
+                         <p className="text-sm text-muted-foreground">Access peer review dashboard</p>
+                       </Link>
                     </div>
                   </div>
                 </NavigationMenuContent>
@@ -181,11 +196,31 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-2">
-            <Link to="/auth" className="hidden sm:block">
-              <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                Sign In
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                <Link to="/dashboard" className="hidden sm:block">
+                  <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
+                    <User className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={handleSignOut}
+                  className="hidden sm:block text-foreground/70 hover:text-foreground"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth" className="hidden sm:block">
+                <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
+                  Sign In
+                </Button>
+              </Link>
+            )}
             <Link to="/submit">
               <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Submit Manuscript
@@ -225,13 +260,35 @@ const Header = () => {
                     ))}
                   </Accordion>
                   <div className="pt-4 mt-4 border-t border-border">
-                    <Link
-                      to="/auth"
-                      onClick={() => setIsOpen(false)}
-                      className="text-base font-medium hover:text-primary transition-smooth block py-2"
-                    >
-                      Sign In
-                    </Link>
+                    {user ? (
+                      <>
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setIsOpen(false)}
+                          className="text-base font-medium hover:text-primary transition-smooth block py-2"
+                        >
+                          My Dashboard
+                        </Link>
+                        <Button
+                          variant="ghost"
+                          onClick={() => {
+                            setIsOpen(false);
+                            handleSignOut();
+                          }}
+                          className="w-full justify-start text-base font-medium hover:text-primary py-2 h-auto"
+                        >
+                          Logout
+                        </Button>
+                      </>
+                    ) : (
+                      <Link
+                        to="/auth"
+                        onClick={() => setIsOpen(false)}
+                        className="text-base font-medium hover:text-primary transition-smooth block py-2"
+                      >
+                        Sign In / Register
+                      </Link>
+                    )}
                   </div>
                 </nav>
               </SheetContent>

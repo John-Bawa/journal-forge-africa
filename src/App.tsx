@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { AnimatedRoute } from "@/components/animations/AnimatedRoute";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -30,21 +32,25 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<AnimatedRoute><Index /></AnimatedRoute>} />
-        <Route path="/auth" element={<AnimatedRoute><Auth /></AnimatedRoute>} />
-        <Route path="/dashboard" element={<AnimatedRoute><Dashboard /></AnimatedRoute>} />
-        <Route path="/submit" element={<AnimatedRoute><SubmitManuscript /></AnimatedRoute>} />
-        <Route path="/manuscripts" element={<AnimatedRoute><Manuscripts /></AnimatedRoute>} />
-        <Route path="/current-issue" element={<AnimatedRoute><CurrentIssue /></AnimatedRoute>} />
-        <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
-        <Route path="/editorial-board" element={<AnimatedRoute><EditorialBoard /></AnimatedRoute>} />
-        <Route path="/for-authors" element={<AnimatedRoute><AuthorGuidelines /></AnimatedRoute>} />
-        <Route path="/archives" element={<AnimatedRoute><Archives /></AnimatedRoute>} />
-        <Route path="/contact" element={<AnimatedRoute><Contact /></AnimatedRoute>} />
-        <Route path="/policies" element={<AnimatedRoute><Policies /></AnimatedRoute>} />
-        <Route path="/news" element={<AnimatedRoute><News /></AnimatedRoute>} />
-        <Route path="/reviewer-dashboard" element={<AnimatedRoute><ReviewerDashboard /></AnimatedRoute>} />
-        <Route path="/editor-dashboard" element={<AnimatedRoute><EditorDashboard /></AnimatedRoute>} />
+      <Route path="/" element={<AnimatedRoute><Index /></AnimatedRoute>} />
+      <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
+      <Route path="/current-issue" element={<AnimatedRoute><CurrentIssue /></AnimatedRoute>} />
+      <Route path="/archives" element={<AnimatedRoute><Archives /></AnimatedRoute>} />
+      <Route path="/for-authors" element={<AnimatedRoute><AuthorGuidelines /></AnimatedRoute>} />
+      <Route path="/policies" element={<AnimatedRoute><Policies /></AnimatedRoute>} />
+      <Route path="/editorial-board" element={<AnimatedRoute><EditorialBoard /></AnimatedRoute>} />
+      <Route path="/contact" element={<AnimatedRoute><Contact /></AnimatedRoute>} />
+      <Route path="/news" element={<AnimatedRoute><News /></AnimatedRoute>} />
+      <Route path="/auth" element={<AnimatedRoute><Auth /></AnimatedRoute>} />
+      
+      {/* Protected Routes */}
+      <Route path="/submit" element={<ProtectedRoute><AnimatedRoute><SubmitManuscript /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/manuscripts" element={<ProtectedRoute><AnimatedRoute><Manuscripts /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><AnimatedRoute><Dashboard /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/reviews" element={<ProtectedRoute><AnimatedRoute><ReviewerDashboard /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/reviewer-dashboard" element={<ProtectedRoute><AnimatedRoute><ReviewerDashboard /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/editorial" element={<ProtectedRoute><AnimatedRoute><EditorDashboard /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/editor-dashboard" element={<ProtectedRoute><AnimatedRoute><EditorDashboard /></AnimatedRoute></ProtectedRoute>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<AnimatedRoute><NotFound /></AnimatedRoute>} />
       </Routes>
@@ -54,13 +60,15 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatedRoutes />
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

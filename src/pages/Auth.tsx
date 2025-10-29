@@ -37,7 +37,10 @@ const Auth = () => {
 
       if (data.user) {
         toast.success("Welcome back!");
-        navigate("/dashboard");
+        // Redirect to intended destination or dashboard
+        const redirectTo = sessionStorage.getItem("redirectAfterLogin") || "/dashboard";
+        sessionStorage.removeItem("redirectAfterLogin");
+        navigate(redirectTo);
       }
     } catch (error: any) {
       toast.error(error.message || "Failed to sign in");
@@ -79,7 +82,10 @@ const Auth = () => {
         if (profileError) throw profileError;
 
         toast.success("Account created successfully! An admin will assign your role.");
-        navigate("/dashboard");
+        // Redirect to intended destination or dashboard
+        const redirectTo = sessionStorage.getItem("redirectAfterLogin") || "/dashboard";
+        sessionStorage.removeItem("redirectAfterLogin");
+        navigate(redirectTo);
       }
     } catch (error: any) {
       toast.error(error.message || "Failed to create account");
