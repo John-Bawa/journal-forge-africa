@@ -11,25 +11,45 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="gradient-hero py-20 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-banner-foreground mb-6 animate-fade-in">
+      <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            {/* ISSN Badge */}
+            <div className="mb-8 inline-block">
+              <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-6 py-2">
+                <span className="text-amber-400 text-sm font-medium">
+                  ISSN: 2756-1234 (Print) | 2756-5678 (Online)
+                </span>
+              </div>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
               African Journal of Veterinary Sciences
             </h1>
-            <p className="text-xl md:text-2xl text-banner-foreground/80 mb-8 leading-relaxed">
-              Advancing veterinary research through rigorous peer review and open-access publishing
+            
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-3xl">
+              Advancing veterinary research through rigorous peer review and open-access publishing. 
+              Publishing cutting-edge studies from African and international scholars across diverse veterinary disciplines.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/submit">
-                <Button size="lg" className="bg-primary hover:bg-primary-hover shadow-elegant">
-                  Submit Your Research
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl">
+                  Submit Your Paper
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/current-issue">
-                <Button size="lg" variant="outline" className="border-banner-foreground/20 text-banner-foreground hover:bg-banner-foreground/10">
-                  View Current Issue
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">
+                  Browse Current Issue
                 </Button>
               </Link>
             </div>
