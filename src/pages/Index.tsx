@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle } from "lucide-react";
+import heroBackground from "@/assets/hero-background.jpg";
 
 const Index = () => {
   return (
@@ -12,6 +13,18 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
+        {/* Background Image Underlay */}
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src={heroBackground} 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/80 via-[#2a5d6c]/70 to-[#1a4d5c]/80"></div>
+        
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
