@@ -35,10 +35,10 @@ const Header = () => {
               <BookOpen className="w-6 h-6 text-primary-foreground" />
             </div>
             <div className="flex flex-col">
-              <span className="text-banner-foreground font-serif text-lg font-bold leading-tight">
+              <span className="text-foreground font-serif text-lg font-bold leading-tight">
                 AJVS
               </span>
-              <span className="text-banner-foreground/70 text-xs hidden sm:block">
+              <span className="text-foreground/70 text-xs hidden sm:block">
                 African Journal of Veterinary Sciences
               </span>
             </div>
@@ -48,7 +48,7 @@ const Header = () => {
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground bg-transparent hover:bg-banner-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -80,7 +80,7 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground bg-transparent hover:bg-banner-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   Manuscripts
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -107,7 +107,7 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground bg-transparent hover:bg-banner-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   Publications
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -127,7 +127,7 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-banner-foreground/80 hover:text-banner-foreground bg-transparent hover:bg-banner-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   Contact
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -164,7 +164,7 @@ const Header = () => {
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="sm" className="text-banner-foreground">
+                <Button variant="ghost" size="sm" className="text-foreground">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
