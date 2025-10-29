@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Author {
   full_name: string;
@@ -120,87 +121,135 @@ export const MultiStepSubmission = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-5xl mx-auto">
         {/* Progress Steps */}
-        <div className="flex justify-between mb-8">
-          {steps.map((step) => (
-            <div key={step.number} className="flex flex-col items-center flex-1">
-              <div
+        <div className="flex justify-between mb-8 relative">
+          {/* Animated Progress Bar */}
+          <motion.div
+            className="absolute top-5 left-0 h-0.5 bg-primary z-0"
+            initial={{ width: "0%" }}
+            animate={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
+          <div className="absolute top-5 left-0 w-full h-0.5 bg-muted z-0" />
+          
+          {steps.map((step, index) => (
+            <div key={step.number} className="flex flex-col items-center flex-1 relative z-10">
+              <motion.div
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${
                   currentStep >= step.number
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground"
                 }`}
+                initial={{ scale: 0.8 }}
+                animate={{ 
+                  scale: currentStep === step.number ? 1.1 : 1,
+                  transition: { duration: 0.2 }
+                }}
+                whileHover={{ scale: 1.15 }}
               >
-                {currentStep > step.number ? <Check className="w-5 h-5" /> : step.number}
-              </div>
-              <p className="text-xs mt-2 text-center hidden md:block">{step.title}</p>
+                {currentStep > step.number ? (
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  >
+                    <Check className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  step.number
+                )}
+              </motion.div>
+              <p className={`text-xs mt-2 text-center hidden md:block transition-all ${
+                currentStep === step.number ? "font-semibold text-primary" : ""
+              }`}>
+                {step.title}
+              </p>
             </div>
           ))}
         </div>
 
-        <Card className="glass-card p-8">
-          {/* Step 1: Manuscript Metadata */}
-          {currentStep === 1 && (
-            <div className="space-y-6">
-              <h2 className="text-2xl font-serif font-bold">Manuscript Metadata</h2>
-              <div>
-                <Label htmlFor="title">Manuscript Title *</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="Enter the full title of your manuscript"
-                />
-              </div>
-              <div>
-                <Label htmlFor="abstract">Abstract *</Label>
-                <Textarea
-                  id="abstract"
-                  value={formData.abstract}
-                  onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
-                  placeholder="Provide a concise summary (max 300 words)"
-                  rows={6}
-                />
-              </div>
-              <div>
-                <Label htmlFor="keywords">Keywords *</Label>
-                <Input
-                  id="keywords"
-                  value={formData.keywords}
-                  onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
-                  placeholder="Enter 4-6 keywords, separated by commas"
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
+        <Card className="glass backdrop-blur-lg p-8 border-border/50">
+          <AnimatePresence mode="wait">
+            {/* Step 1: Manuscript Metadata */}
+            {currentStep === 1 && (
+              <motion.div
+                key="step1"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-6"
+              >
+                <h2 className="text-2xl font-serif font-bold">Manuscript Metadata</h2>
                 <div>
-                  <Label htmlFor="subject_area">Subject Area *</Label>
+                  <Label htmlFor="title">Manuscript Title *</Label>
                   <Input
-                    id="subject_area"
-                    value={formData.subject_area}
-                    onChange={(e) => setFormData({ ...formData, subject_area: e.target.value })}
-                    placeholder="e.g., Animal Nutrition"
+                    id="title"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    placeholder="Enter the full title of your manuscript"
+                    className="focus:ring-2 focus:ring-primary/50 transition-all"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="manuscript_type">Manuscript Type *</Label>
-                  <select
-                    id="manuscript_type"
-                    value={formData.manuscript_type}
-                    onChange={(e) => setFormData({ ...formData, manuscript_type: e.target.value })}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2"
-                  >
-                    <option>Original Research</option>
-                    <option>Review Article</option>
-                    <option>Case Report</option>
-                    <option>Short Communication</option>
-                  </select>
+                  <Label htmlFor="abstract">Abstract *</Label>
+                  <Textarea
+                    id="abstract"
+                    value={formData.abstract}
+                    onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
+                    placeholder="Provide a concise summary (max 300 words)"
+                    rows={6}
+                    className="focus:ring-2 focus:ring-primary/50 transition-all"
+                  />
                 </div>
-              </div>
-            </div>
-          )}
+                <div>
+                  <Label htmlFor="keywords">Keywords *</Label>
+                  <Input
+                    id="keywords"
+                    value={formData.keywords}
+                    onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
+                    placeholder="Enter 4-6 keywords, separated by commas"
+                    className="focus:ring-2 focus:ring-primary/50 transition-all"
+                  />
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="subject_area">Subject Area *</Label>
+                    <Input
+                      id="subject_area"
+                      value={formData.subject_area}
+                      onChange={(e) => setFormData({ ...formData, subject_area: e.target.value })}
+                      placeholder="e.g., Animal Nutrition"
+                      className="focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="manuscript_type">Manuscript Type *</Label>
+                    <select
+                      id="manuscript_type"
+                      value={formData.manuscript_type}
+                      onChange={(e) => setFormData({ ...formData, manuscript_type: e.target.value })}
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 focus:ring-2 focus:ring-primary/50 transition-all"
+                    >
+                      <option>Original Research</option>
+                      <option>Review Article</option>
+                      <option>Case Report</option>
+                      <option>Short Communication</option>
+                    </select>
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
           {/* Step 2: Author Details */}
           {currentStep === 2 && (
-            <div className="space-y-6">
+            <motion.div
+              key="step2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
               <h2 className="text-2xl font-serif font-bold">Author Details</h2>
               <div className="space-y-4">
                 {formData.authors.map((author, idx) => (
@@ -262,12 +311,19 @@ export const MultiStepSubmission = () => {
                   Add Author
                 </Button>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Step 3: File Uploads */}
           {currentStep === 3 && (
-            <div className="space-y-6">
+            <motion.div
+              key="step3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
               <h2 className="text-2xl font-serif font-bold">File Uploads</h2>
               <div className="space-y-4">
                 <div>
@@ -285,12 +341,19 @@ export const MultiStepSubmission = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Step 4: References */}
           {currentStep === 4 && (
-            <div className="space-y-6">
+            <motion.div
+              key="step4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
               <h2 className="text-2xl font-serif font-bold">References</h2>
               <div>
                 <Label htmlFor="references">References (APA 7th Edition)</Label>
@@ -305,12 +368,19 @@ export const MultiStepSubmission = () => {
                   Please ensure all references follow APA 7th edition format
                 </p>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Step 5: Declarations */}
           {currentStep === 5 && (
-            <div className="space-y-6">
+            <motion.div
+              key="step5"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
               <h2 className="text-2xl font-serif font-bold">Declarations & Conflicts</h2>
               <div>
                 <Label htmlFor="ethical_approval">Ethical Approval Statement</Label>
@@ -342,12 +412,19 @@ export const MultiStepSubmission = () => {
                   rows={3}
                 />
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Step 6: Review & Submit */}
           {currentStep === 6 && (
-            <div className="space-y-6">
+            <motion.div
+              key="step6"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
               <h2 className="text-2xl font-serif font-bold">Review & Submit</h2>
               <Card className="p-4 bg-secondary/20">
                 <h3 className="font-semibold mb-2">Manuscript Summary</h3>
@@ -364,8 +441,9 @@ export const MultiStepSubmission = () => {
                   ₦50,000 will be required upon acceptance.
                 </p>
               </div>
-            </div>
+            </motion.div>
           )}
+        </AnimatePresence>
 
           {/* Navigation Buttons */}
           <div className="flex justify-between mt-8 pt-6 border-t">

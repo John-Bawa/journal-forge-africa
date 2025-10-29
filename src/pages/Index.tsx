@@ -15,16 +15,31 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
         {/* Background Image Underlay */}
-        <div className="absolute inset-0 opacity-50">
+        <motion.div 
+          className="absolute inset-0 opacity-50"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
           <img 
             src={heroBackground} 
             alt="" 
             className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/40 via-[#2a5d6c]/30 to-[#1a4d5c]/50"></div>
+        {/* Animated Gradient Overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/40 via-[#2a5d6c]/30 to-[#1a4d5c]/50"
+          animate={{ 
+            background: [
+              "linear-gradient(to bottom right, rgba(26,77,92,0.4), rgba(42,93,108,0.3), rgba(26,77,92,0.5))",
+              "linear-gradient(to bottom right, rgba(26,77,92,0.5), rgba(42,93,108,0.4), rgba(26,77,92,0.4))",
+              "linear-gradient(to bottom right, rgba(26,77,92,0.4), rgba(42,93,108,0.3), rgba(26,77,92,0.5))"
+            ]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        ></motion.div>
         
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-5">
@@ -34,29 +49,49 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* ISSN Badge */}
-            <div className="mb-8 inline-block">
+            <motion.div 
+              className="mb-8 inline-block"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-6 py-2">
                 <span className="text-amber-400 text-sm font-medium">
                   ISSN: 2756-1234 (Print) | 2756-5678 (Online)
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Main Title */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+            <motion.h1 
+              className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               African Journal of Veterinary Sciences
-            </h1>
+            </motion.h1>
             
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-3xl">
+            <motion.p 
+              className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-3xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               Advancing veterinary research through rigorous peer review and open-access publishing. 
               Publishing cutting-edge studies from African and international scholars across diverse veterinary disciplines.
-            </p>
+            </motion.p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
               <Link to="/submit">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl glow-hover">
                   Submit Your Paper
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -66,7 +101,7 @@ const Index = () => {
                   Browse Current Issue
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

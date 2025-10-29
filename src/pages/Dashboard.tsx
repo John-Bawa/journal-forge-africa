@@ -9,6 +9,8 @@ import Footer from "@/components/layout/Footer";
 import { FileText, PlusCircle, Users, BookOpen, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -74,7 +76,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <LoadingSpinner />
       </div>
     );
   }
@@ -110,28 +112,44 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {isAuthor && (
               <Link to="/submit">
-                <Card className="shadow-card transition-smooth hover:shadow-elegant cursor-pointer border-border/50 h-full">
-                  <CardHeader>
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <PlusCircle className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle>Submit Manuscript</CardTitle>
-                    <CardDescription>Start a new manuscript submission</CardDescription>
-                  </CardHeader>
-                </Card>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className="h-full"
+                >
+                  <Card className="glass backdrop-blur-lg shadow-card hover:shadow-elegant cursor-pointer border-border/50 h-full">
+                    <CardHeader>
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                        <PlusCircle className="w-6 h-6 text-primary" />
+                      </div>
+                      <CardTitle>Submit Manuscript</CardTitle>
+                      <CardDescription>Start a new manuscript submission</CardDescription>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
               </Link>
             )}
 
             <Link to="/manuscripts">
-              <Card className="shadow-card transition-smooth hover:shadow-elegant cursor-pointer border-border/50 h-full">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <FileText className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle>My Manuscripts</CardTitle>
-                  <CardDescription>View and manage your submissions</CardDescription>
-                </CardHeader>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="h-full"
+              >
+                <Card className="glass backdrop-blur-lg shadow-card hover:shadow-elegant cursor-pointer border-border/50 h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                      <FileText className="w-6 h-6 text-primary" />
+                    </div>
+                    <CardTitle>My Manuscripts</CardTitle>
+                    <CardDescription>View and manage your submissions</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
             </Link>
 
             {isReviewer && (
