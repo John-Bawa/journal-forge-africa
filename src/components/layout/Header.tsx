@@ -12,6 +12,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -194,31 +200,35 @@ const Header = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto">
-                <nav className="flex flex-col gap-6 mt-8">
-                  {mobileNavSections.map((section) => (
-                    <div key={section.title} className="space-y-3">
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        {section.title}
-                      </h3>
-                      <div className="flex flex-col gap-2 pl-2">
-                        {section.links.map((link) => (
-                          <Link
-                            key={link.href}
-                            to={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className="text-base hover:text-primary transition-smooth py-1"
-                          >
-                            {link.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                  <div className="pt-4 border-t border-border">
+                <nav className="flex flex-col mt-8">
+                  <Accordion type="multiple" className="w-full">
+                    {mobileNavSections.map((section, index) => (
+                      <AccordionItem key={section.title} value={`item-${index}`}>
+                        <AccordionTrigger className="text-sm font-semibold uppercase tracking-wider hover:text-primary">
+                          {section.title}
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="flex flex-col gap-2 pl-2">
+                            {section.links.map((link) => (
+                              <Link
+                                key={link.href}
+                                to={link.href}
+                                onClick={() => setIsOpen(false)}
+                                className="text-base hover:text-primary transition-smooth py-2"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                  <div className="pt-4 mt-4 border-t border-border">
                     <Link
                       to="/auth"
                       onClick={() => setIsOpen(false)}
-                      className="text-base font-medium hover:text-primary transition-smooth block py-1"
+                      className="text-base font-medium hover:text-primary transition-smooth block py-2"
                     >
                       Sign In
                     </Link>
