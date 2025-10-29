@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu, LogOut, User } from "lucide-react";
+import { BookOpen, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -25,17 +23,6 @@ import {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    try {
-      await supabase.auth.signOut();
-      toast.success("Signed out successfully");
-      navigate("/");
-    } catch (error: any) {
-      toast.error("Error signing out");
-    }
-  };
 
   const mobileNavSections = [
     {
@@ -195,26 +182,8 @@ const Header = () => {
           </NavigationMenu>
 
           {/* CTA Buttons */}
-          <div className="flex items-center gap-2 ml-auto">
-            {user ? (
-              <>
-                <Link to="/dashboard" className="hidden sm:inline-flex">
-                  <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                    <User className="w-4 h-4 mr-2" />
-                    Dashboard
-                  </Button>
-                </Link>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleSignOut}
-                  className="hidden sm:inline-flex text-foreground/70 hover:text-foreground"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-              </>
-            ) : (
+          <div className="flex items-center gap-2">
+            {!user && (
               <Link to="/auth" className="hidden sm:inline-flex">
                 <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
                   Sign In
@@ -260,35 +229,13 @@ const Header = () => {
                     ))}
                   </Accordion>
                   <div className="pt-4 mt-4 border-t border-border">
-                    {user ? (
-                      <>
-                        <Link
-                          to="/dashboard"
-                          onClick={() => setIsOpen(false)}
-                          className="text-base font-medium hover:text-primary transition-smooth block py-2"
-                        >
-                          My Dashboard
-                        </Link>
-                        <Button
-                          variant="ghost"
-                          onClick={() => {
-                            setIsOpen(false);
-                            handleSignOut();
-                          }}
-                          className="w-full justify-start text-base font-medium hover:text-primary py-2 h-auto"
-                        >
-                          Logout
-                        </Button>
-                      </>
-                    ) : (
-                      <Link
-                        to="/auth"
-                        onClick={() => setIsOpen(false)}
-                        className="text-base font-medium hover:text-primary transition-smooth block py-2"
-                      >
-                        Sign In / Register
-                      </Link>
-                    )}
+                    <Link
+                      to="/auth"
+                      onClick={() => setIsOpen(false)}
+                      className="text-base font-medium hover:text-primary transition-smooth block py-2"
+                    >
+                      Sign In / Register
+                    </Link>
                   </div>
                 </nav>
               </SheetContent>
