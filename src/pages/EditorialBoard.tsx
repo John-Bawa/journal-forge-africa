@@ -1,7 +1,8 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail } from "lucide-react";
+import { Mail, Phone, ExternalLink, Award, Users, Globe2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -192,119 +193,531 @@ const EditorialBoard = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+  const cardHoverVariants = {
+    initial: { scale: 1, boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" },
+    hover: {
+      scale: 1.02,
+      boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
       <Header />
 
-      <main className="flex-1 py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Editorial Board</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Details About the Journal
+      <main className="flex-1 py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Hero Section */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block mb-6"
+            >
+              <div className="w-20 h-20 mx-auto rounded-2xl gradient-royal flex items-center justify-center mb-4">
+                <Users className="w-10 h-10 text-white" />
+              </div>
+            </motion.div>
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-banner to-primary">
+              Editorial Board
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Distinguished experts guiding excellence in veterinary sciences across Africa and beyond
             </p>
-          </div>
+          </motion.div>
 
           {/* Section A: Contact Information */}
-          <Card className="glass p-8 mb-12">
-            <h2 className="text-2xl font-serif font-bold mb-4">Section A: Contact and Correspondences</h2>
-            <p className="text-muted-foreground mb-2">Contact and correspondences should be sent to:</p>
-            <div className="text-muted-foreground">
-              <p className="font-semibold">The Editor – in – chief</p>
-              <p>African Journal of Veterinary Sciences</p>
-              <p>Faculty of Veterinary Medicine</p>
-              <p>University of Jos,</p>
-              <p>P.M.B 2084, Jos, Plateau State</p>
-              <p>Nigeria</p>
-              <div className="flex items-center gap-2 mt-2 text-primary">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:AJVSc@unijos.edu.ng" className="hover:underline">
-                  AJVSc@unijos.edu.ng
-                </a>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-16"
+          >
+            <Card className="glass-hover border-2 border-primary/20 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-banner/5 pointer-events-none" />
+              <CardContent className="p-10 relative">
+                <div className="flex items-start gap-6">
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-16 h-16 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0"
+                  >
+                    <Globe2 className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <div className="flex-1">
+                    <h2 className="text-3xl font-serif font-bold mb-4 flex items-center gap-3">
+                      Contact Information
+                      <div className="h-1 flex-1 bg-gradient-to-r from-primary/50 to-transparent rounded-full" />
+                    </h2>
+                    <p className="text-muted-foreground mb-6">For all correspondence and inquiries, please reach out to:</p>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-2 text-muted-foreground">
+                        <p className="font-semibold text-lg text-foreground">The Editor-in-Chief</p>
+                        <p>African Journal of Veterinary Sciences</p>
+                        <p>Faculty of Veterinary Medicine</p>
+                        <p>University of Jos</p>
+                        <p>P.M.B 2084, Jos, Plateau State</p>
+                        <p>Nigeria</p>
+                      </div>
+                      <div className="space-y-4">
+                        <motion.a
+                          whileHover={{ x: 5 }}
+                          href="mailto:AJVSc@unijos.edu.ng"
+                          className="flex items-center gap-3 text-primary hover:text-primary/80 transition-colors group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <Mail className="w-5 h-5" />
+                          </div>
+                          <span className="font-medium">AJVSc@unijos.edu.ng</span>
+                        </motion.a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-primary/10 via-banner/10 to-primary/10 rounded-full mb-6">
+              <Award className="w-5 h-5 text-primary" />
+              <h2 className="text-2xl font-serif font-bold">Editorial Board Members</h2>
+              <Award className="w-5 h-5 text-primary" />
             </div>
-          </Card>
+          </motion.div>
 
-          <div className="mb-8">
-            <h2 className="text-3xl font-serif font-bold mb-6 text-center">Section B: Editors and Editorial Board Members</h2>
-          </div>
-
-          {/* Associate Editors */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-center">2. Associate Editors</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {associateEditors.map((editor, index) => (
-                <Card key={index} className="glass-hover">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
-                        {editor.name
+          {/* Editor-in-Chief */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl font-serif font-bold mb-8 text-center">Editor-in-Chief</h3>
+            <motion.div
+              variants={cardHoverVariants}
+              initial="initial"
+              whileHover="hover"
+              className="max-w-4xl mx-auto"
+            >
+              <Card className="glass-hover border-2 border-primary/30 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-banner/10 pointer-events-none" />
+                <CardContent className="p-10 relative">
+                  <div className="flex flex-col md:flex-row items-center gap-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-banner rounded-full blur-xl opacity-50" />
+                      <div className="relative w-32 h-32 rounded-full gradient-royal flex items-center justify-center text-5xl font-bold text-white shadow-2xl">
+                        {editorInChief.name
                           .split(" ")
                           .map((n) => n[0])
                           .join("")}
                       </div>
-                      <div className="flex-1">
+                    </motion.div>
+                    <div className="flex-1 text-center md:text-left">
+                      <h3 className="text-3xl font-serif font-bold mb-2">{editorInChief.name}</h3>
+                      <p className="text-primary font-semibold mb-3 text-lg">{editorInChief.title}</p>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{editorInChief.affiliation}</p>
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <motion.a
+                          whileHover={{ x: 5 }}
+                          href={`mailto:${editorInChief.email}`}
+                          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <Mail className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm font-medium">{editorInChief.email}</span>
+                        </motion.a>
+                        <motion.div
+                          whileHover={{ x: 5 }}
+                          className="inline-flex items-center gap-2 text-muted-foreground group"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                            <Phone className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm">{editorInChief.phone}</span>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Co-Editor & Deputy Editor */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-8 mb-16"
+          >
+            {/* Co-Editor-in-Chief */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-xl font-serif font-bold mb-6 text-center">Co-Editor-in-Chief</h3>
+              <motion.div
+                variants={cardHoverVariants}
+                initial="initial"
+                whileHover="hover"
+              >
+                <Card className="glass-hover h-full border border-banner/30">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-center text-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center text-3xl font-bold text-white shadow-lg"
+                      >
+                        {coEditorInChief.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </motion.div>
+                      <h4 className="text-xl font-serif font-bold mb-2">{coEditorInChief.name}</h4>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{coEditorInChief.affiliation}</p>
+                      <div className="space-y-2 w-full">
+                        <motion.a
+                          whileHover={{ x: 3 }}
+                          href={`mailto:${coEditorInChief.email}`}
+                          className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                        >
+                          <Mail className="w-4 h-4" />
+                          <span>{coEditorInChief.email}</span>
+                        </motion.a>
+                        <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+                          <Phone className="w-4 h-4" />
+                          {coEditorInChief.phone}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+
+            {/* Deputy Editor-in-Chief */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-xl font-serif font-bold mb-6 text-center">Deputy Editor-in-Chief</h3>
+              <motion.div
+                variants={cardHoverVariants}
+                initial="initial"
+                whileHover="hover"
+              >
+                <Card className="glass-hover h-full border border-primary/30">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-center text-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="w-24 h-24 rounded-full gradient-royal mb-4 flex items-center justify-center text-3xl font-bold text-white shadow-lg"
+                      >
+                        {deputyEditorInChief.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </motion.div>
+                      <h4 className="text-xl font-serif font-bold mb-1">{deputyEditorInChief.name}</h4>
+                      <p className="text-primary font-semibold text-sm mb-2">{deputyEditorInChief.position}</p>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{deputyEditorInChief.affiliation}</p>
+                      <div className="space-y-2 w-full">
+                        <motion.a
+                          whileHover={{ x: 3 }}
+                          href={`mailto:${deputyEditorInChief.email}`}
+                          className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                        >
+                          <Mail className="w-4 h-4" />
+                          <span>{deputyEditorInChief.email}</span>
+                        </motion.a>
+                        <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+                          <Phone className="w-4 h-4" />
+                          {deputyEditorInChief.phone}
+                        </p>
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          href={`https://orcid.org/${deputyEditorInChief.orcid}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mt-2"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          ORCID: {deputyEditorInChief.orcid}
+                        </motion.a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          {/* Managing Editor */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl font-serif font-bold mb-8 text-center">Managing Editor</h3>
+            <motion.div
+              variants={cardHoverVariants}
+              initial="initial"
+              whileHover="hover"
+              className="max-w-3xl mx-auto"
+            >
+              <Card className="glass-hover border border-banner/30">
+                <CardContent className="p-10">
+                  <div className="flex flex-col md:flex-row items-center gap-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      className="w-28 h-28 rounded-full gradient-cyan flex items-center justify-center text-4xl font-bold text-white shadow-xl"
+                    >
+                      {managingEditor.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </motion.div>
+                    <div className="flex-1 text-center md:text-left">
+                      <h4 className="text-2xl font-serif font-bold mb-1">{managingEditor.name}</h4>
+                      <p className="text-primary font-semibold mb-2">{managingEditor.position}</p>
+                      <p className="text-sm text-muted-foreground mb-6">{managingEditor.affiliation}</p>
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                        <motion.a
+                          whileHover={{ x: 3 }}
+                          href={`mailto:${managingEditor.email}`}
+                          className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80"
+                        >
+                          <Mail className="w-4 h-4" />
+                          {managingEditor.email}
+                        </motion.a>
+                        <span className="text-sm text-muted-foreground flex items-center gap-2">
+                          <Phone className="w-4 h-4" />
+                          {managingEditor.phone}
+                        </span>
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          href={`https://orcid.org/${managingEditor.orcid}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          ORCID
+                        </motion.a>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Associate Editors */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-serif font-bold mb-3">Associate Editors</h2>
+              <div className="h-1 w-24 bg-gradient-to-r from-primary to-banner mx-auto rounded-full" />
+            </div>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {associateEditors.map((editor, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="glass-hover h-full border border-primary/20 hover:border-primary/40 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col items-center text-center">
+                        <motion.div
+                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                          className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center text-2xl font-bold text-white mb-4 shadow-lg"
+                        >
+                          {editor.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </motion.div>
                         <h3 className="font-serif font-bold text-lg mb-1">{editor.name}</h3>
                         {editor.position && (
-                          <p className="text-primary font-semibold text-sm mb-1">{editor.position}</p>
+                          <p className="text-primary font-semibold text-sm mb-2">{editor.position}</p>
                         )}
-                        <p className="text-xs text-muted-foreground mb-2">{editor.affiliation}</p>
-                        <div className="flex flex-col gap-1 text-xs">
-                          <div className="flex items-center gap-1 text-primary">
-                            <Mail className="w-3 h-3" />
-                            <a href={`mailto:${editor.email}`} className="hover:underline">
-                              {editor.email}
-                            </a>
-                          </div>
-                          {editor.phone && <p className="text-muted-foreground">Tel.: {editor.phone}</p>}
+                        <p className="text-xs text-muted-foreground mb-4 line-clamp-2">{editor.affiliation}</p>
+                        <div className="space-y-2 w-full">
+                          <motion.a
+                            whileHover={{ x: 3 }}
+                            href={`mailto:${editor.email}`}
+                            className="flex items-center justify-center gap-2 text-xs text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <Mail className="w-3 h-3 flex-shrink-0" />
+                            <span className="truncate">{editor.email}</span>
+                          </motion.a>
+                          {editor.phone && (
+                            <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
+                              <Phone className="w-3 h-3" />
+                              {editor.phone}
+                            </p>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Editorial Board Advisers */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-center">3. Editorial Board Advisers</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {advisoryBoard.map((advisor, index) => (
-                <Card key={index} className="glass-hover">
-                  <CardContent className="p-6">
-                    <h3 className="font-serif font-bold text-lg mb-2">{advisor.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{advisor.affiliation}</p>
-                    <div className="flex flex-col gap-1 text-xs">
-                      <div className="flex items-center gap-1 text-primary">
-                        <Mail className="w-3 h-3" />
-                        <a href={`mailto:${advisor.email}`} className="hover:underline">
-                          {advisor.email}
-                        </a>
-                      </div>
-                      {advisor.phone && <p className="text-muted-foreground">Tel.: {advisor.phone}</p>}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-serif font-bold mb-3">Editorial Board Advisers</h2>
+              <div className="h-1 w-24 bg-gradient-to-r from-banner to-primary mx-auto rounded-full" />
             </div>
-          </div>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {advisoryBoard.map((advisor, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="glass-hover h-full border border-banner/20 hover:border-banner/40 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col items-center text-center">
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="w-16 h-16 rounded-full gradient-cyan flex items-center justify-center text-xl font-bold text-white mb-4 shadow-lg"
+                        >
+                          {advisor.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .slice(0, 2)}
+                        </motion.div>
+                        <h3 className="font-serif font-bold text-base mb-2">{advisor.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-4 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
+                        <div className="space-y-2 w-full">
+                          <motion.a
+                            whileHover={{ x: 3 }}
+                            href={`mailto:${advisor.email}`}
+                            className="flex items-center justify-center gap-2 text-xs text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <Mail className="w-3 h-3 flex-shrink-0" />
+                            <span className="truncate">{advisor.email}</span>
+                          </motion.a>
+                          {advisor.phone && (
+                            <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
+                              <Phone className="w-3 h-3" />
+                              {advisor.phone}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
 
           {/* Call for Reviewers */}
-          <Card className="glass p-8 text-center">
-            <h2 className="text-2xl font-serif font-bold mb-4">Join Our Reviewer Panel</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              AJVS welcomes qualified veterinary scientists to join our peer review panel. If you have expertise in
-              veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
-            </p>
-            <a
-              href="mailto:AJVSc@unijos.edu.ng"
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-            >
-              <Mail className="w-4 h-4" />
-              Contact Editorial Office
-            </a>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card className="glass-hover border-2 border-primary/30 overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-banner/10 pointer-events-none" />
+              <CardContent className="p-12 text-center relative">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-16 h-16 mx-auto mb-6 rounded-2xl gradient-royal flex items-center justify-center"
+                >
+                  <Award className="w-8 h-8 text-white" />
+                </motion.div>
+                <h2 className="text-3xl font-serif font-bold mb-4">Join Our Reviewer Panel</h2>
+                <p className="text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                  AJVS welcomes qualified veterinary scientists to join our peer review panel. If you have expertise in
+                  veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
+                </p>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="mailto:AJVSc@unijos.edu.ng"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-banner text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Mail className="w-5 h-5" />
+                  Contact Editorial Office
+                  <ExternalLink className="w-4 h-4" />
+                </motion.a>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </main>
 
