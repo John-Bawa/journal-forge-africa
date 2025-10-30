@@ -21,6 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -185,6 +186,7 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             {!user && (
               <Link to="/auth" className="hidden sm:inline-flex">
                 <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
