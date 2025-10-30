@@ -1,7 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, ExternalLink, Award, Users, Globe2 } from "lucide-react";
+import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EditorialBoard = () => {
@@ -345,11 +345,8 @@ const EditorialBoard = () => {
                       className="relative"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-primary to-banner rounded-full blur-xl opacity-50" />
-                      <div className="relative w-32 h-32 rounded-full gradient-royal flex items-center justify-center text-5xl font-bold text-white shadow-2xl">
-                        {editorInChief.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                      <div className="relative w-32 h-32 rounded-full gradient-royal flex items-center justify-center shadow-2xl">
+                        <User className="w-20 h-20 text-white" strokeWidth={1.5} />
                       </div>
                     </motion.div>
                     <div className="flex-1 text-center md:text-left">
@@ -405,12 +402,9 @@ const EditorialBoard = () => {
                     <div className="flex flex-col items-center text-center">
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: -5 }}
-                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center text-3xl font-bold text-white shadow-lg"
+                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center shadow-lg"
                       >
-                        {coEditorInChief.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                        <User className="w-14 h-14 text-white" strokeWidth={1.5} />
                       </motion.div>
                       <h4 className="text-xl font-serif font-bold mb-2">{coEditorInChief.name}</h4>
                       <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{coEditorInChief.affiliation}</p>
@@ -447,12 +441,9 @@ const EditorialBoard = () => {
                     <div className="flex flex-col items-center text-center">
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-24 h-24 rounded-full gradient-royal mb-4 flex items-center justify-center text-3xl font-bold text-white shadow-lg"
+                        className="w-24 h-24 rounded-full gradient-royal mb-4 flex items-center justify-center shadow-lg"
                       >
-                        {deputyEditorInChief.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                        <User className="w-14 h-14 text-white" strokeWidth={1.5} />
                       </motion.div>
                       <h4 className="text-xl font-serif font-bold mb-1">{deputyEditorInChief.name}</h4>
                       <p className="text-primary font-semibold text-sm mb-2">{deputyEditorInChief.position}</p>
@@ -508,12 +499,9 @@ const EditorialBoard = () => {
                   <div className="flex flex-col md:flex-row items-center gap-8">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: -5 }}
-                      className="w-28 h-28 rounded-full gradient-cyan flex items-center justify-center text-4xl font-bold text-white shadow-xl"
+                      className="w-28 h-28 rounded-full gradient-cyan flex items-center justify-center shadow-xl"
                     >
-                      {managingEditor.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      <User className="w-16 h-16 text-white" strokeWidth={1.5} />
                     </motion.div>
                     <div className="flex-1 text-center md:text-left">
                       <h4 className="text-2xl font-serif font-bold mb-1">{managingEditor.name}</h4>
@@ -582,12 +570,9 @@ const EditorialBoard = () => {
                         <motion.div
                           whileHover={{ rotate: 360, scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center text-2xl font-bold text-white mb-4 shadow-lg"
+                          className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center mb-4 shadow-lg"
                         >
-                          {editor.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
+                          <User className="w-12 h-12 text-white" strokeWidth={1.5} />
                         </motion.div>
                         <h3 className="font-serif font-bold text-lg mb-1">{editor.name}</h3>
                         {editor.position && (
@@ -649,13 +634,9 @@ const EditorialBoard = () => {
                       <div className="flex flex-col items-center text-center">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-16 h-16 rounded-full gradient-cyan flex items-center justify-center text-xl font-bold text-white mb-4 shadow-lg"
+                          className="w-16 h-16 rounded-full gradient-cyan flex items-center justify-center mb-4 shadow-lg"
                         >
-                          {advisor.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")
-                            .slice(0, 2)}
+                          <User className="w-10 h-10 text-white" strokeWidth={1.5} />
                         </motion.div>
                         <h3 className="font-serif font-bold text-base mb-2">{advisor.name}</h3>
                         <p className="text-xs text-muted-foreground mb-4 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
