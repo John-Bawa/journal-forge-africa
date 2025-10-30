@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import ajvsLogo from "@/assets/ajvs-logo.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -64,8 +65,8 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center transition-smooth group-hover:scale-105">
-              <BookOpen className="w-6 h-6 text-primary-foreground" />
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transition-smooth group-hover:scale-105 shadow-md">
+              <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="text-foreground font-serif text-lg font-bold leading-tight">
