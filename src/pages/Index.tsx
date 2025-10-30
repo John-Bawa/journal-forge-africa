@@ -235,22 +235,27 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="gradient-accent py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
+      <section className="gradient-royal py-16 md:py-20 relative overflow-hidden">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4 drop-shadow-lg">
             Ready to Share Your Research?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto drop-shadow-md">
             Join our community of researchers and contribute to the advancement of veterinary sciences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/auth">
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-xl">
                 Create Account
               </Button>
             </Link>
             <Link to="/submit">
-              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-primary shadow-xl">
                 Submit Manuscript
               </Button>
             </Link>
