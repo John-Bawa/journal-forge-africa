@@ -45,40 +45,59 @@ const About = () => {
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Scope of the Journal</h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    AJVS publishes original research articles, review papers, case reports, and short communications covering all aspects of veterinary sciences, including but not limited to:
+                    African Journal of Veterinary Sciences aims to promote the contributions of the veterinary profession and biomedical sciences 
+                    in the African continent to the global hub of scientific knowledge. This objective will be achieved via publishing of original 
+                    research work and articles in all aspects of veterinary, biomedical and animal sciences whose contents are novel or tailored 
+                    towards contributing to scientific knowledge with high impacts and of global importance.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    The Journal welcomes original research articles, reviews, case reports, short communications and perspectives in the fields of 
+                    veterinary, biomedical and animal sciences which include but not limited to:
                   </p>
                   <ul className="grid md:grid-cols-2 gap-3 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Veterinary Medicine and Surgery</span>
+                      <span>Anatomy, Animal Breeding and Genetics</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Animal Production and Nutrition</span>
+                      <span>Biochemistry and Physiology</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Veterinary Public Health</span>
+                      <span>Diagnostic Medicine and Surgery</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Veterinary Microbiology and Parasitology</span>
+                      <span>Entomology and Parasitology</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Veterinary Pathology and Pharmacology</span>
+                      <span>Ecology and Environmental Health</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Veterinary Anatomy and Physiology</span>
+                      <span>Immunology and Vaccine Development</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Wildlife and Conservation Medicine</span>
+                      <span>Livestock Health and Production</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>One Health and Zoonotic Diseases</span>
+                      <span>Microbiology and Pathology</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Pharmacology and Toxicology</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Public Health and Preventive Medicine</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>Wildlife Conservation and Health</span>
                     </li>
                   </ul>
                 </div>
@@ -94,7 +113,18 @@ const About = () => {
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Editorial Policy</h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    AJVS follows a rigorous double-blind peer review process to ensure the quality, originality, and scientific integrity of all published work. We are committed to:
+                    African Journal of Veterinary Sciences has a distinguished Editorial Board made up of leading professionals in the fields of 
+                    veterinary and biomedical sciences from around the world. All the manuscripts submitted to AJVS are subjected to a double-blind 
+                    peer review process. With the presence of a robust base of international reviewers, the process of decision making on the 
+                    acceptance/rejection of all submitted manuscripts will be done rapidly and to the highest standards.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Authors must prepare their manuscripts in accordance to the Instructions for Authors of the journal. Manuscripts which do not 
+                    follow the format and style of the Journal, will be returned to the authors for revision or rejected. The Journal reserves the 
+                    right to make any further formal changes and language corrections necessary in a manuscript accepted for publication.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    We are committed to:
                   </p>
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2">

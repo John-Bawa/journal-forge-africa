@@ -113,28 +113,57 @@ const Policies = () => {
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Plagiarism and Originality</h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  AJVS has a zero-tolerance policy toward plagiarism. All submitted manuscripts are screened using plagiarism detection software before peer review.
-                </p>
-                
                 <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg mb-4">
-                  <h3 className="font-semibold text-destructive mb-2">Detection and Consequences</h3>
-                  <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>• Manuscripts with similarity index greater than 20% are rejected without review</li>
-                    <li>• Similarity index 15-20% requires major revisions and resubmission</li>
-                    <li>• Proven plagiarism may result in author ban and institutional notification</li>
-                  </ul>
+                  <p className="text-muted-foreground">
+                    Manuscripts submitted to the editorial office will be screened for potential plagiarism before peer review using 
+                    similarity detection software. All cases of suspected or alleged plagiarism are considered very seriously in 
+                    accordance with the journal's Plagiarism Policy.
+                  </p>
                 </div>
+                
+                <h3 className="font-semibold mb-3 text-lg">Detection and Consequences</h3>
+                <ul className="space-y-2 text-muted-foreground mb-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Manuscripts with significant similarity to published work will be rejected</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Self-plagiarism is also considered a violation of ethical standards</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Authors found guilty of plagiarism may be banned from future submissions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Institutions may be notified of proven plagiarism cases</span>
+                  </li>
+                </ul>
 
-                <div className="space-y-2 text-muted-foreground text-sm">
-                  <p><strong>What constitutes plagiarism:</strong></p>
-                  <ul className="space-y-1 ml-4">
-                    <li>• Copying text without proper attribution</li>
-                    <li>• Paraphrasing without citation</li>
-                    <li>• Self-plagiarism (republishing own work without disclosure)</li>
-                    <li>• Image or data duplication without permission</li>
-                  </ul>
-                </div>
+                <h3 className="font-semibold mb-3 text-lg">What Constitutes Plagiarism?</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Using others' ideas or words without proper attribution</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Copying text, figures, or data from other sources without citation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Submitting previously published work as new research</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Paraphrasing content without acknowledgment</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Image or data duplication without permission</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

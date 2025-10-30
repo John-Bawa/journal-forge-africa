@@ -81,8 +81,9 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Advancing veterinary research through rigorous peer review and open-access publishing. 
-              Publishing cutting-edge studies from African and international scholars across diverse veterinary disciplines.
+              A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 
+              short communications and case reports in all aspects of veterinary, biomedical and animal sciences. 
+              Published twice yearly by the Faculty of Veterinary Medicine, University of Jos, Nigeria.
             </motion.p>
             
             {/* CTA Buttons */}

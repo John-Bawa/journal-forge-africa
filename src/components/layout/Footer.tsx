@@ -18,16 +18,22 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-banner-foreground/80 text-sm leading-relaxed mb-4">
-              The African Journal of Veterinary Sciences is a premier international, peer-reviewed, open-access publication dedicated to advancing veterinary medicine, animal health, and related disciplines across Africa and the global scientific community.
+              African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. 
+              A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 
+              short communications and case reports in veterinary, biomedical and animal sciences. Published twice yearly.
             </p>
             <div className="flex flex-col gap-2 text-sm">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-primary" />
-                <span className="text-banner-foreground/70">ISSN: 2958-4027 (Online)</span>
+                <span className="text-banner-foreground/70">Open Access Journal</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-primary" />
-                <span className="text-banner-foreground/70">Open Access • Peer-Reviewed</span>
+                <span className="text-banner-foreground/70">Double-Blind Peer Review</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-primary" />
+                <span className="text-banner-foreground/70">Two Issues Per Year</span>
               </div>
             </div>
           </div>
@@ -98,27 +104,28 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <span className="text-banner-foreground/90 font-medium">Editorial</span>
-                  <a href="mailto:editor@ajvs.org" className="text-banner-foreground/70 hover:text-primary transition-smooth">
-                    editor@ajvs.org
+                  <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
+                  <a href="mailto:AJVSc@unijos.edu.ng" className="text-banner-foreground/70 hover:text-primary transition-smooth">
+                    AJVSc@unijos.edu.ng
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div className="flex flex-col gap-1">
-                  <span className="text-banner-foreground/90 font-medium">Support</span>
-                  <span className="text-banner-foreground/70">+254 (0) 712 345 678</span>
+                  <span className="text-banner-foreground/90 font-medium">Editor-in-Chief</span>
+                  <span className="text-banner-foreground/70">+234 8035912881</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-banner-foreground/90 font-medium mb-1">Location</span>
+                  <span className="text-banner-foreground/90 font-medium mb-1">Address</span>
                   <span className="text-banner-foreground/70 leading-relaxed">
-                    African Journal of Veterinary Sciences<br />
-                    Editorial Office<br />
-                    Nairobi, Kenya
+                    Faculty of Veterinary Medicine<br />
+                    University of Jos<br />
+                    P.M.B 2084, Jos, Plateau State<br />
+                    Nigeria
                   </span>
                 </div>
               </li>
