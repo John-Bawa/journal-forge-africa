@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BookOpen, Mail, MapPin, Phone, FileText, Globe } from "lucide-react";
+import ajvsLogo from "@/assets/ajvs-logo.png";
 
 const Footer = () => {
   return (
@@ -8,15 +9,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand & Mission */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <BookOpen className="w-7 h-7 text-primary" />
+            <Link to="/" className="flex items-center gap-3 mb-5 group w-fit">
+              <div className="w-12 h-12 rounded-lg bg-white border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
+                <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="text-banner-foreground font-serif text-xl font-bold">AJVS</span>
                 <span className="text-banner-foreground/60 text-xs">Est. 2024</span>
               </div>
-            </div>
+            </Link>
             <p className="text-banner-foreground/80 text-sm leading-relaxed mb-4">
               African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. 
               A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 

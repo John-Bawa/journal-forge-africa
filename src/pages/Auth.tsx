@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { BookOpen } from "lucide-react";
+import ajvsLogo from "@/assets/ajvs-logo.png";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Auth = () => {
@@ -96,9 +96,9 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-secondary/30 py-12 px-4">
-      <Link to="/" className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 rounded-lg gradient-accent flex items-center justify-center">
-          <BookOpen className="w-7 h-7 text-white" />
+      <Link to="/" className="flex items-center gap-3 mb-8 group">
+        <div className="w-14 h-14 rounded-lg bg-white border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105 shadow-md">
+          <img src={ajvsLogo} alt="AJVS Logo" className="w-12 h-12 object-contain" />
         </div>
         <div className="flex flex-col">
           <span className="text-foreground font-serif text-2xl font-bold">AJVS</span>
