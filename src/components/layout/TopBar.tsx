@@ -23,22 +23,22 @@ const TopBar = () => {
 
   return (
     <div className="w-full bg-secondary/30 border-b border-border/20">
-      <div className="container mx-auto px-4">
-        <div className="flex h-10 items-center justify-end gap-2">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex h-9 sm:h-10 items-center justify-end gap-2">
           <Link to="/dashboard">
-            <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground h-8">
-              <User className="w-4 h-4 mr-2" />
-              Dashboard
+            <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground h-8 text-xs sm:text-sm">
+              <User className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">Dashboard</span>
             </Button>
           </Link>
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={handleSignOut}
-            className="text-foreground/80 hover:text-foreground h-8"
+            className="text-foreground/80 hover:text-foreground h-8 text-xs sm:text-sm"
           >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
+            <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+            <span className="hidden xs:inline">Logout</span>
           </Button>
         </div>
       </div>

@@ -5,25 +5,25 @@ import ajvsLogo from "@/assets/ajvs-logo.png";
 const Footer = () => {
   return (
     <footer className="bg-banner text-banner-foreground mt-auto border-t border-banner-foreground/10">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 mb-8 sm:mb-12">
           {/* Brand & Mission */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-5 group w-fit">
-              <div className="w-12 h-12 rounded-lg bg-white border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
-                <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
+          <div className="lg:col-span-2 text-center sm:text-left">
+            <Link to="/" className="flex items-center gap-3 mb-4 sm:mb-5 group justify-center sm:justify-start w-fit mx-auto sm:mx-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
+                <img src={ajvsLogo} alt="AJVS Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
               <div className="flex flex-col">
-                <span className="text-banner-foreground font-serif text-xl font-bold">AJVS</span>
+                <span className="text-banner-foreground font-serif text-lg sm:text-xl font-bold">AJVS</span>
                 <span className="text-banner-foreground/60 text-xs">Est. 2024</span>
               </div>
             </Link>
-            <p className="text-banner-foreground/80 text-sm leading-relaxed mb-4">
+            <p className="text-banner-foreground/80 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 px-4 sm:px-0">
               African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. 
               A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 
               short communications and case reports in veterinary, biomedical and animal sciences. Published twice yearly.
             </p>
-            <div className="flex flex-col gap-2 text-sm">
+            <div className="flex flex-col gap-2 text-xs sm:text-sm items-center sm:items-start">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-primary" />
                 <span className="text-banner-foreground/70">Open Access Journal</span>
@@ -40,9 +40,9 @@ const Footer = () => {
           </div>
 
           {/* Browse */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">Browse</h3>
-            <ul className="space-y-3 text-sm">
+          <div className="text-center sm:text-left">
+            <h3 className="font-semibold mb-4 sm:mb-5 text-banner-foreground text-base sm:text-base">Browse</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
               <li>
                 <Link to="/current-issue" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
                   Current Issue
@@ -72,9 +72,9 @@ const Footer = () => {
           </div>
 
           {/* For Authors */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">For Authors</h3>
-            <ul className="space-y-3 text-sm">
+          <div className="text-center sm:text-left">
+            <h3 className="font-semibold mb-4 sm:mb-5 text-banner-foreground text-base sm:text-base">For Authors</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
               <li>
                 <Link to="/submit" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
                   Submit Manuscript
@@ -99,28 +99,28 @@ const Footer = () => {
           </div>
 
           {/* Contact Information */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">Contact</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
+          <div className="text-center sm:text-left">
+            <h3 className="font-semibold mb-4 sm:mb-5 text-banner-foreground text-base sm:text-base">Contact</h3>
+            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 text-center sm:text-left">
                   <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
                   <a href="mailto:AJVSc@unijos.edu.ng" className="text-banner-foreground/70 hover:text-primary transition-smooth">
                     AJVSc@unijos.edu.ng
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 text-center sm:text-left">
                   <span className="text-banner-foreground/90 font-medium">Editor-in-Chief</span>
                   <span className="text-banner-foreground/70">+234 8035912881</span>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col">
+                <div className="flex flex-col text-center sm:text-left">
                   <span className="text-banner-foreground/90 font-medium mb-1">Address</span>
                   <span className="text-banner-foreground/70 leading-relaxed">
                     Faculty of Veterinary Medicine<br />
@@ -135,12 +135,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-banner-foreground/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-banner-foreground/60">
+        <div className="pt-6 sm:pt-8 border-t border-banner-foreground/10">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-xs sm:text-sm text-banner-foreground/60 text-center sm:text-left">
               &copy; {new Date().getFullYear()} African Journal of Veterinary Sciences. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <Link to="/policies" className="text-banner-foreground/60 hover:text-primary transition-smooth">
                 Privacy Policy
               </Link>

@@ -73,7 +73,7 @@ const Index = () => {
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-white/10 rounded-full"
+              className={`absolute w-2 h-2 bg-white/10 rounded-full ${i > 2 ? 'hidden sm:block' : ''}`}
               style={{
                 left: `${15 + i * 15}%`,
                 top: `${20 + (i % 3) * 30}%`,
@@ -94,17 +94,17 @@ const Index = () => {
           ))}
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center sm:text-left">
             {/* ISSN Badge */}
             <motion.div 
-              className="mb-8 inline-block"
+              className="mb-6 sm:mb-8 inline-block"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-6 py-2">
-                <span className="text-amber-400 text-sm font-medium">
+              <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-4 sm:px-6 py-2">
+                <span className="text-amber-400 text-xs sm:text-sm font-medium">
                   e-ISSN: 3043-4246
                 </span>
               </div>
@@ -112,7 +112,7 @@ const Index = () => {
 
             {/* Main Title */}
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -122,7 +122,7 @@ const Index = () => {
             
             {/* Subtitle */}
             <motion.p 
-              className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-3xl"
+              className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-3xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -134,19 +134,19 @@ const Index = () => {
             
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <Link to="/submit">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl glow-hover">
+              <Link to="/submit" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl glow-hover min-h-[48px]">
                   Submit Your Paper
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link to="/current-issue">
-                <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">
+              <Link to="/current-issue" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm min-h-[48px]">
                   Browse Current Issue
                 </Button>
               </Link>
@@ -156,16 +156,16 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Why Publish with AJVS?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Why Publish with AJVS?</h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Join a community of researchers committed to excellence in veterinary sciences
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 icon: BookOpen,
@@ -216,17 +216,17 @@ const Index = () => {
       </section>
 
       {/* Submission Process */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Simple Submission Process</h2>
-              <p className="text-lg text-muted-foreground">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
+              <p className="text-base sm:text-lg text-muted-foreground px-4">
                 Get your research published in four easy steps
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {[
                 {
                   step: "1",
@@ -251,27 +251,27 @@ const Index = () => {
               ].map((item, index) => (
                 <motion.div
                   key={item.step}
-                  className="flex gap-6 items-start group"
+                  className="flex gap-4 sm:gap-6 items-start group bg-card/50 p-4 sm:p-5 rounded-lg hover:bg-card transition-smooth"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full gradient-accent flex items-center justify-center text-white font-bold text-lg transition-smooth group-hover:scale-110">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full gradient-accent flex items-center justify-center text-white font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
                     {item.step}
                   </div>
-                  <div className="flex-1 pt-2">
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                  <div className="flex-1 pt-1 sm:pt-2">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
-                  <CheckCircle className="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3" />
+                  <CheckCircle className="hidden sm:block w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3 flex-shrink-0" />
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-12 text-center">
-              <Link to="/for-authors">
-                <Button size="lg" variant="outline">
+            <div className="mt-8 sm:mt-12 text-center">
+              <Link to="/for-authors" className="w-full sm:w-auto inline-block">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px]">
                   View Author Guidelines
                 </Button>
               </Link>
@@ -281,22 +281,22 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-banner/10 py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+      <section className="bg-gradient-to-br from-primary/10 to-banner/10 py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-foreground mb-3 sm:mb-4">
             Ready to Share Your Research?
           </h2>
-          <p className="text-xl text-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Join our community of researchers and contribute to the advancement of veterinary sciences.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/auth">
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+            <Link to="/auth" className="w-full sm:w-auto">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 min-h-[48px]">
                 Create Account
               </Button>
             </Link>
-            <Link to="/submit">
-              <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
+            <Link to="/submit" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 min-h-[48px]">
                 Submit Manuscript
               </Button>
             </Link>
