@@ -4,7 +4,7 @@
  */
 
 // Placeholder URL - Update this with your actual OJS installation URL
-export const OJS_BASE_URL = process.env.VITE_OJS_URL || 'https://your-ojs-installation.org';
+export const OJS_BASE_URL = import.meta.env.VITE_OJS_URL || 'https://your-ojs-installation.org';
 
 // OJS Route paths
 export const OJS_ROUTES = {
