@@ -169,6 +169,28 @@ const About = () => {
                 Established in 1975, the Faculty of Veterinary Medicine, University of Jos, is one of Nigeria's leading institutions for veterinary education and research.
               </p>
             </div>
+
+            {/* Contact Information */}
+            <div className="glass rounded-2xl p-8 md:p-12">
+              <h2 className="text-2xl font-serif font-bold mb-6 text-center">Contact Information</h2>
+              <div className="max-w-2xl mx-auto">
+                <p className="text-muted-foreground mb-4">For all correspondence and inquiries, please contact:</p>
+                <div className="space-y-2 text-muted-foreground">
+                  <p className="font-semibold">The Editor-in-Chief</p>
+                  <p>African Journal of Veterinary Sciences</p>
+                  <p>Faculty of Veterinary Medicine</p>
+                  <p>University of Jos</p>
+                  <p>P.M.B 2084, Jos, Plateau State</p>
+                  <p>Nigeria</p>
+                  <div className="flex items-center gap-2 mt-4 text-primary">
+                    <Globe className="w-4 h-4" />
+                    <a href="mailto:AJVSc@unijos.edu.ng" className="hover:underline">
+                      AJVSc@unijos.edu.ng
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

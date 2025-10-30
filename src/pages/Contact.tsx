@@ -123,22 +123,54 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-primary" />
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <p className="text-muted-foreground">editor@ajvsunijos.edu.ng</p>
+                        <a href="mailto:AJVSc@unijos.edu.ng" className="text-muted-foreground hover:text-primary">
+                          AJVSc@unijos.edu.ng
+                        </a>
                       </div>
                     </div>
                     <div className="flex gap-4">
                       <MapPin className="w-6 h-6 text-primary" />
                       <div>
                         <h3 className="font-semibold mb-1">Address</h3>
-                        <p className="text-muted-foreground">University of Jos, Nigeria</p>
+                        <div className="text-muted-foreground">
+                          <p>The Editor-in-Chief</p>
+                          <p>African Journal of Veterinary Sciences</p>
+                          <p>Faculty of Veterinary Medicine</p>
+                          <p>University of Jos</p>
+                          <p>P.M.B 2084, Jos, Plateau State</p>
+                          <p>Nigeria</p>
+                        </div>
                       </div>
                     </div>
                     <div className="flex gap-4">
                       <Phone className="w-6 h-6 text-primary" />
                       <div>
-                        <h3 className="font-semibold mb-1">Phone</h3>
-                        <p className="text-muted-foreground">+234 xxx xxxx xxx</p>
+                        <h3 className="font-semibold mb-1">Editor-in-Chief</h3>
+                        <p className="text-muted-foreground">Prof. Dzikwi Emmena Asabe</p>
+                        <p className="text-muted-foreground">+234 8035912881</p>
                       </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-semibold mb-4">Editorial Team</h2>
+                  <div className="space-y-4 text-sm">
+                    <div>
+                      <p className="font-semibold">Managing Editor</p>
+                      <p className="text-muted-foreground">Dr. Idris Ayodeji Azeez</p>
+                      <a href="mailto:azeezi@unijos.edu.ng" className="text-primary hover:underline">
+                        azeezi@unijos.edu.ng
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Deputy Editor-in-Chief</p>
+                      <p className="text-muted-foreground">Dr. Ameji, Negedu Onogu</p>
+                      <a href="mailto:amejio@unijos.edu.ng" className="text-primary hover:underline">
+                        amejio@unijos.edu.ng
+                      </a>
                     </div>
                   </div>
                 </CardContent>
