@@ -235,27 +235,22 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="gradient-royal py-16 md:py-20 relative overflow-hidden">
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4 drop-shadow-lg">
+      <section className="bg-gradient-to-br from-primary/10 to-banner/10 py-16 md:py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
             Ready to Share Your Research?
           </h2>
-          <p className="text-xl text-white mb-8 max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-xl text-foreground/80 mb-8 max-w-2xl mx-auto">
             Join our community of researchers and contribute to the advancement of veterinary sciences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/auth">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-xl">
+              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
                 Create Account
               </Button>
             </Link>
             <Link to="/submit">
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-primary shadow-xl">
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
                 Submit Manuscript
               </Button>
             </Link>
