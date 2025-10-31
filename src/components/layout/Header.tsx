@@ -95,9 +95,9 @@ const Header = () => {
                           <div className="font-medium text-foreground mb-1 group-hover:text-primary">Overview of AJVS</div>
                           <p className="text-sm text-muted-foreground">Learn about our mission and vision</p>
                         </Link>
-                        <Link to="/editorial-board" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
+                        <Link to="/editorial-board" className="group block p-3 rounded-lg bg-primary/15 hover:bg-primary/25 backdrop-blur-md border border-primary/20 transition-smooth">
                           <div className="font-medium text-foreground mb-1 group-hover:text-primary">Editorial Board</div>
-                          <p className="text-sm text-muted-foreground">Meet our distinguished editors</p>
+                          <p className="text-sm text-foreground/80 group-hover:text-foreground">Meet our distinguished editors</p>
                         </Link>
                       </div>
                       <div className="space-y-1">
