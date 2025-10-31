@@ -497,41 +497,41 @@ const EditorialBoard = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-10"
           >
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-serif font-bold mb-3">Associate Editors</h2>
-              <div className="h-1 w-24 bg-gradient-to-r from-primary to-banner mx-auto rounded-full" />
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-serif font-bold mb-2">Associate Editors</h2>
+              <div className="h-0.5 w-20 bg-gradient-to-r from-primary to-banner mx-auto rounded-full" />
             </div>
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
             >
               {associateEditors.map((editor, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Card className="glass-hover h-full border border-primary/20 hover:border-primary/40 transition-all duration-300">
-                    <CardContent className="p-6">
+                    <CardContent className="p-4">
                       <div className="flex flex-col items-center text-center">
                         <motion.div
                           whileHover={{ rotate: 360, scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center mb-4 shadow-lg"
+                          className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center mb-3 shadow-lg"
                         >
-                          <User className="w-12 h-12 text-white" strokeWidth={1.5} />
+                          <User className="w-8 h-8 text-white" strokeWidth={1.5} />
                         </motion.div>
-                        <h3 className="font-serif font-bold text-lg mb-1">{editor.name}</h3>
+                        <h3 className="font-serif font-bold text-base mb-1">{editor.name}</h3>
                         {editor.position && (
-                          <p className="text-primary font-semibold text-sm mb-2">{editor.position}</p>
+                          <p className="text-primary font-semibold text-xs mb-1.5">{editor.position}</p>
                         )}
-                        <p className="text-xs text-muted-foreground mb-4 line-clamp-2">{editor.affiliation}</p>
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{editor.affiliation}</p>
                         <div className="space-y-2 w-full">
                           <motion.a
                             whileHover={{ x: 3 }}
@@ -562,37 +562,37 @@ const EditorialBoard = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-10"
           >
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-serif font-bold mb-3">Editorial Board Advisers</h2>
-              <div className="h-1 w-24 bg-gradient-to-r from-banner to-primary mx-auto rounded-full" />
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-serif font-bold mb-2">Editorial Board Advisers</h2>
+              <div className="h-0.5 w-20 bg-gradient-to-r from-banner to-primary mx-auto rounded-full" />
             </div>
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
             >
               {advisoryBoard.map((advisor, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Card className="glass-hover h-full border border-banner/20 hover:border-banner/40 transition-all duration-300">
-                    <CardContent className="p-6">
+                    <CardContent className="p-4">
                       <div className="flex flex-col items-center text-center">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-16 h-16 rounded-full gradient-cyan flex items-center justify-center mb-4 shadow-lg"
+                          className="w-14 h-14 rounded-full gradient-cyan flex items-center justify-center mb-3 shadow-lg"
                         >
-                          <User className="w-10 h-10 text-white" strokeWidth={1.5} />
+                          <User className="w-8 h-8 text-white" strokeWidth={1.5} />
                         </motion.div>
-                        <h3 className="font-serif font-bold text-base mb-2">{advisor.name}</h3>
-                        <p className="text-xs text-muted-foreground mb-4 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
+                        <h3 className="font-serif font-bold text-sm mb-1.5">{advisor.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
                         <div className="space-y-2 w-full">
                           <motion.a
                             whileHover={{ x: 3 }}
