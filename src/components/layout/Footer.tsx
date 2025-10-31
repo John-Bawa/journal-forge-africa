@@ -115,7 +115,7 @@ const Footer = () => {
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div className="flex flex-col gap-1">
                   <span className="text-banner-foreground/90 font-medium">Editor-in-Chief</span>
-                  <span className="text-banner-foreground/70">+234 8035912881</span>
+                  <span className="text-banner-foreground/70">+256770700846</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">

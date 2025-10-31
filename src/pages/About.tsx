@@ -206,18 +206,19 @@ const About = () => {
               <div className="max-w-2xl mx-auto">
                 <p className="text-muted-foreground mb-4">For all correspondence and inquiries, please contact:</p>
                 <div className="space-y-2 text-muted-foreground">
-                  <p className="font-semibold">The Editor-in-Chief</p>
+                  <p className="font-semibold">Dr Musinguzi Simon Peter - Editor-in-Chief</p>
                   <p>African Journal of Veterinary Sciences</p>
-                  <p>Faculty of Veterinary Medicine</p>
-                  <p>University of Jos</p>
-                  <p>P.M.B 2084, Jos, Plateau State</p>
-                  <p>Nigeria</p>
+                  <p>Department of Agriculture and Animal Production</p>
+                  <p>Kyambogo University</p>
+                  <p>Kampala</p>
+                  <p>Uganda</p>
                   <div className="flex items-center gap-2 mt-4 text-primary">
                     <Globe className="w-4 h-4" />
-                    <a href="mailto:AJVSc@unijos.edu.ng" className="hover:underline">
-                      AJVSc@unijos.edu.ng
+                    <a href="mailto:spmusinguzi@kyu.ac.ug" className="hover:underline">
+                      spmusinguzi@kyu.ac.ug
                     </a>
                   </div>
+                  <p className="text-sm">Phone: +256770700846</p>
                 </div>
               </div>
             </div>

@@ -135,10 +135,10 @@ export default function Contact() {
                         <div className="text-muted-foreground">
                           <p>The Editor-in-Chief</p>
                           <p>African Journal of Veterinary Sciences</p>
-                          <p>Faculty of Veterinary Medicine</p>
-                          <p>University of Jos</p>
-                          <p>P.M.B 2084, Jos, Plateau State</p>
-                          <p>Nigeria</p>
+                          <p>Department of Agriculture and Animal Production</p>
+                          <p>Kyambogo University</p>
+                          <p>Kampala</p>
+                          <p>Uganda</p>
                         </div>
                       </div>
                     </div>
@@ -146,8 +146,8 @@ export default function Contact() {
                       <Phone className="w-6 h-6 text-primary" />
                       <div>
                         <h3 className="font-semibold mb-1">Editor-in-Chief</h3>
-                        <p className="text-muted-foreground">Prof. Dzikwi Emmena Asabe</p>
-                        <p className="text-muted-foreground">+234 8035912881</p>
+                        <p className="text-muted-foreground">Dr Musinguzi Simon Peter</p>
+                        <p className="text-muted-foreground">+256770700846</p>
                       </div>
                     </div>
                   </div>

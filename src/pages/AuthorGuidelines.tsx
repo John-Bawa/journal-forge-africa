@@ -434,11 +434,14 @@ const AuthorGuidelines = () => {
                   All correspondences to the journal should be addressed to:
                 </p>
                 <div className="p-4 bg-secondary/50 rounded-lg space-y-1">
-                  <p className="font-semibold">The Editor-in-Chief,</p>
-                  <p>African Journal of Veterinary Sciences,</p>
-                  <p>Faculty of Veterinary Medicine,</p>
-                  <p>University of Jos, Nigeria.</p>
-                  <p className="text-primary font-semibold mt-2">E-mail: AJVSc@unijos.edu.ng</p>
+                  <p className="font-semibold">Dr Musinguzi Simon Peter</p>
+                  <p className="font-semibold">Editor-in-Chief</p>
+                  <p>African Journal of Veterinary Sciences</p>
+                  <p>Department of Agriculture and Animal Production</p>
+                  <p>Kyambogo University, Kampala</p>
+                  <p>Uganda</p>
+                  <p className="text-primary font-semibold mt-2">E-mail: spmusinguzi@kyu.ac.ug</p>
+                  <p className="text-sm mt-1">Phone: +256770700846</p>
                 </div>
               </div>
             </div>
