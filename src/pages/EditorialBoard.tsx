@@ -6,16 +6,8 @@ import { motion } from "framer-motion";
 
 const EditorialBoard = () => {
   const editorInChief = {
-    name: "Prof. Dzikwi Emmena Asabe",
-    title: "Editor-in-Chief",
-    affiliation: "Department of Veterinary Public Health and Preventive Medicine, University of Jos, Nigeria",
-    email: "dzikwia@unijos.edu.ng",
-    phone: "+234 8035912881",
-  };
-
-  const coEditorInChief = {
     name: "Dr Musinguzi Simon Peter",
-    title: "Co-Editor-in-Chief",
+    title: "Editor-in-Chief",
     affiliation: "Department of Agriculture and Animal Production, Kyambogo University, Kampala, Uganda",
     email: "spmusinguzi@kyu.ac.ug",
     phone: "+256770700846",
