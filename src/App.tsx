@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { AnimatedRoute } from "@/components/animations/AnimatedRoute";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -66,6 +67,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AnimatedRoutes />
+          <ScrollToTop />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
