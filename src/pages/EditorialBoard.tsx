@@ -13,6 +13,14 @@ const EditorialBoard = () => {
     phone: "+256770700846",
   };
 
+  const coEditorInChief = {
+    name: "Co-Editor Name",
+    title: "Co-Editor-in-Chief",
+    affiliation: "Institution and Department",
+    email: "email@example.com",
+    phone: "+000 0000000000",
+  };
+
   const deputyEditorInChief = {
     name: "Dr. Ameji, Negedu Onogu",
     title: "Deputy Editor-in-Chief",
