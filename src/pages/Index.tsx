@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
-import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle } from "lucide-react";
+import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
 import { motion } from "framer-motion";
 
@@ -212,6 +212,38 @@ const Index = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Latest Publications Section */}
+      <section className="py-12 sm:py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12 gap-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-2">Latest Publications</h2>
+              <p className="text-base sm:text-lg text-muted-foreground">
+                Recent articles from our current issue
+              </p>
+            </div>
+            <Link to="/current-issue">
+              <Button variant="outline" size="lg" className="min-h-[48px]">
+                View All Articles
+              </Button>
+            </Link>
+          </div>
+
+          {/* Empty State */}
+          <Card className="shadow-card border-dashed">
+            <CardContent className="flex flex-col items-center justify-center py-16 sm:py-24 text-center">
+              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
+                <ArticleIcon className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">No Publications Yet</h3>
+              <p className="text-sm sm:text-base text-muted-foreground max-w-md">
+                Published articles will appear here once they are available.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
