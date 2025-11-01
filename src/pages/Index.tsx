@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
-import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon, Globe, Shield, Calendar, TrendingUp } from "lucide-react";
+import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
 import { motion } from "framer-motion";
 
@@ -207,110 +207,6 @@ const Index = () => {
                     <CardDescription className="text-base">
                       {feature.description}
                     </CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Impact Stats Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-banner/5 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
-            <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              Our Global
-            </motion.h2>
-            <motion.p 
-              className="text-2xl sm:text-3xl md:text-4xl text-muted-foreground font-light"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Publishing Impact
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {[
-              {
-                icon: Shield,
-                number: "100%",
-                title: "Open Access for All",
-                description: "Empowering Knowledge Sharing with 100% Open Access for All",
-                color: "text-amber-500",
-                bgColor: "bg-amber-500/10",
-              },
-              {
-                icon: Calendar,
-                number: "12+",
-                title: "Years of Publishing Excellence",
-                description: "Over a Decade of Trusted Knowledge Dissemination",
-                color: "text-cyan-500",
-                bgColor: "bg-cyan-500/10",
-              },
-              {
-                icon: Users,
-                number: "6,000+",
-                title: "Reviewers from 71+ Countries",
-                description: "A Worldwide Network of Expert Reviewers from Diverse Countries",
-                color: "text-primary",
-                bgColor: "bg-primary/10",
-              },
-              {
-                icon: Globe,
-                number: "40+",
-                title: "Countries Global Authorship",
-                description: "A Global Overview of Authorship Trends Across Countries",
-                color: "text-emerald-500",
-                bgColor: "bg-emerald-500/10",
-              },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -12, transition: { duration: 0.3 } }}
-              >
-                <Card className="h-full text-center border-border/50 shadow-card hover:shadow-elegant transition-smooth bg-card/50 backdrop-blur-sm">
-                  <CardContent className="pt-8 pb-8 px-6">
-                    <motion.div 
-                      className={`w-20 h-20 mx-auto rounded-2xl ${stat.bgColor} flex items-center justify-center mb-6`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <stat.icon className={`w-10 h-10 ${stat.color}`} />
-                    </motion.div>
-                    <motion.h3 
-                      className="text-4xl sm:text-5xl font-bold mb-3"
-                      initial={{ scale: 0.5 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                    >
-                      {stat.number}
-                    </motion.h3>
-                    <h4 className="text-lg font-semibold mb-3 leading-tight">
-                      {stat.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {stat.description}
-                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
