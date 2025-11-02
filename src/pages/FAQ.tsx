@@ -22,72 +22,72 @@ const faqs = [
   {
     id: "1",
     icon: BookOpen,
-    question: "What is AJVS?",
+    question: "🧾 What is AJVS?",
     answer:
-      "The African Journal of Veterinary Sciences (AJVS) is a peer-reviewed, open-access journal published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. It publishes high-quality research in veterinary, biomedical, and animal sciences.",
+      "The African Journal of Veterinary Sciences (AJVS) is a peer-reviewed, international, and open-access journal published by the Faculty of Veterinary Medicine, University of Jos, Nigeria.\n\nAJVS publishes original research articles, reviews, short communications, and case reports covering all aspects of veterinary, biomedical, and animal sciences.\n\n🔗 Visit: https://ajvs-unijos.org",
   },
   {
     id: "2",
-    icon: Upload,
-    question: "How can I submit a manuscript?",
+    icon: BookOpen,
+    question: "🌍 What is the scope of the journal?",
     answer:
-      "Authors can submit manuscripts through the journal's online submission portal at https://ajvs-unijos.org/submissions or via email at ajvsc@unijos.edu.ng. Please ensure the manuscript follows the Author Guidelines before submission.",
+      "AJVS welcomes manuscripts in areas including:\n\n• Veterinary anatomy, physiology, and biochemistry\n• Animal breeding and genetics\n• Pathology, microbiology, and parasitology\n• Pharmacology and toxicology\n• Public health, preventive medicine, and epidemiology\n• Wildlife health and conservation\n• Livestock production, health, and management",
   },
   {
     id: "3",
-    icon: FileText,
-    question: "What types of manuscripts are accepted?",
+    icon: Upload,
+    question: "📥 How can I submit my manuscript?",
     answer:
-      "AJVS accepts Original Research Articles, Review Articles, Case Reports, Short Communications, and Letters to the Editor.",
+      "Manuscripts should be submitted via the online submission portal on the journal website:\n👉 https://ajvs-unijos.org/submissions\n\nor by email to ajvsc@unijos.edu.ng\n\nEnsure you include:\n• A cover letter addressed to the Editor-in-Chief\n• Declaration and copyright transfer form (available on the site)\n• Main manuscript file (Microsoft Word)\n• Figures and tables properly labeled and captioned",
   },
   {
     id: "4",
-    icon: Calendar,
-    question: "How often is AJVS published?",
+    icon: FileText,
+    question: "✍🏽 What types of manuscripts are accepted?",
     answer:
-      'The journal publishes two issues per year — June and December. Accepted papers may appear online early as "Articles in Press."',
+      "AJVS accepts:\n\n• Original Research Articles\n• Review Articles\n• Case Reports\n• Short Communications\n• Letters to the Editor",
   },
   {
     id: "5",
-    icon: Users,
-    question: "What is the peer-review process?",
+    icon: Calendar,
+    question: "🧾 How often is the journal published?",
     answer:
-      "All manuscripts undergo a double-blind peer-review process involving at least two reviewers. Decisions are made based on reviewer recommendations and editorial assessment.",
+      'AJVS publishes two issues per year — June and December.\n\nAccepted papers are posted online as "Articles in Press" ahead of the next issue.',
   },
   {
     id: "6",
-    icon: DollarSign,
-    question: "Are there any publication fees?",
+    icon: Users,
+    question: "💡 How does the peer-review process work?",
     answer:
-      "Yes. There is a ₦5,000 (or USD $30) processing fee and a ₦7,000 (or USD $35) page charge for accepted articles.",
+      "All manuscripts undergo double-blind peer review by at least two qualified reviewers.\n\nThe process typically takes 3–6 weeks.\n\nFinal decisions are based on scientific quality, originality, and reviewer recommendations.",
   },
   {
     id: "7",
-    icon: Shield,
-    question: "Does AJVS check for plagiarism?",
+    icon: Scale,
+    question: "📜 What ethical standards are required?",
     answer:
-      "Yes. All submissions are screened using plagiarism detection software. Manuscripts with similarity above 15% may be returned for correction or rejected.",
+      "AJVS follows COPE (Committee on Publication Ethics) guidelines.\n\nAuthors must:\n• Obtain ethical clearance for animal or human studies\n• Avoid plagiarism, duplicate publication, and data falsification\n• Clearly state any conflicts of interest\n• Provide proof of ethical approval number in the Methods section",
   },
   {
     id: "8",
-    icon: Scale,
-    question: "What ethical standards does AJVS follow?",
+    icon: DollarSign,
+    question: "💰 Are there publication or processing fees?",
     answer:
-      "AJVS adheres to COPE ethical guidelines. Studies involving animals or humans must include ethical approval from a recognized committee.",
+      "Yes.\n\n• Processing fee: ₦5,000 (or USD $30) — before peer review\n• Page charge: ₦7,000 (or USD $35) per page upon acceptance\n\n💳 Payment details:\nAccess Bank Plc\nAccount Name: African Journal of Veterinary Sciences\nAccount Number: 1931486112",
   },
   {
     id: "9",
-    icon: Quote,
-    question: "What referencing style should I use?",
+    icon: Shield,
+    question: "📚 What is the open access policy?",
     answer:
-      "References should follow the APA 5th edition style. Example: Pam, A. A. (2023). Title of the article. Journal Name, 15(2), 45–60.",
+      "All AJVS articles are published under the Creative Commons Attribution License (CC BY), allowing free use, distribution, and citation with proper acknowledgment.\n\n🔗 https://ajvs-unijos.org/open-access-policy",
   },
   {
     id: "10",
-    icon: Mail,
-    question: "How can I contact the editorial office?",
+    icon: Users,
+    question: "🧑🏽‍🏫 Who are the editors and reviewers?",
     answer:
-      "Editorial Office, Faculty of Veterinary Medicine, University of Jos, Plateau State, Nigeria.\nEmail: ajvsc@unijos.edu.ng\nWebsite: https://ajvs-unijos.org/contact",
+      "The Editorial Board is led by Prof. Dzikwi Emmena Asabe (Editor-in-Chief), with editors and reviewers from Nigeria, Uganda, Somalia, Côte d'Ivoire, the United States, and the United Kingdom.\n\n📋 View the full editorial board: https://ajvs-unijos.org/editorial-board",
   },
 ];
 
