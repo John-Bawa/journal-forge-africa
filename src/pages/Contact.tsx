@@ -156,7 +156,7 @@ export default function Contact() {
                   <div className="space-y-4 text-sm">
                     <div>
                       <p className="font-semibold">Editor-in-Chief</p>
-                      <p className="text-muted-foreground">Dr. Musinguzi Siomn Peter</p>
+                      <p className="text-muted-foreground">Dr. Musinguzi Simon Peter</p>
                       <a href="mailto:spmusinguzi@kyu.ac.ug" className="text-primary hover:underline">
                         spmusinguzi@kyu.ac.ug
                       </a>
@@ -169,7 +169,7 @@ export default function Contact() {
                       </a>
                     </div>
                     <div>
-                      <p className="font-semibold">Managing Director</p>
+                      <p className="font-semibold">Managing Editor</p>
                       <p className="text-muted-foreground">Dr. Idris Ayodeji Azeez</p>
                       <a href="mailto:azeezi@unijos.edu.ng" className="text-primary hover:underline">
                         azeezi@unijos.edu.ng
