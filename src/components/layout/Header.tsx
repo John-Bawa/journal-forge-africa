@@ -50,9 +50,9 @@ const Header = () => {
     },
     {
       title: "Submissions",
-      icon: FileText,
+      icon: Send,
       links: [
-        { label: "Submit Manuscript", href: "/submit", icon: Send, badge: "New" },
+        { label: "Submit Manuscript", href: "/submit", icon: Send },
         { label: "Author Dashboard", href: "/manuscripts", icon: FileText },
         { label: "Reviewer Dashboard", href: "/reviews", icon: User },
       ],
@@ -153,38 +153,43 @@ const Header = () => {
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  For Authors
+                  Submissions
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[500px] p-6 bg-background border border-border/50 shadow-lg">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <Link to="/submit" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-medium text-foreground group-hover:text-primary">Submit Manuscript</span>
-                            <Badge variant="secondary" className="bg-primary/10 text-primary">New</Badge>
-                          </div>
-                          <p className="text-sm text-muted-foreground">Start your submission</p>
-                        </Link>
-                        <Link to="/for-authors" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Guidelines</div>
-                          <p className="text-sm text-muted-foreground">Submission requirements</p>
-                        </Link>
-                        <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">My Manuscripts</div>
-                          <p className="text-sm text-muted-foreground">Track submissions</p>
-                        </Link>
-                      </div>
-                      <div className="space-y-1">
-                        <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">For Reviewers</div>
-                          <p className="text-sm text-muted-foreground">Review assignments</p>
-                        </Link>
-                        <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact</div>
-                          <p className="text-sm text-muted-foreground">Get in touch</p>
-                        </Link>
-                      </div>
+                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
+                    <div className="space-y-1">
+                      <Link to="/submit" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Submit Manuscript</div>
+                        <p className="text-sm text-muted-foreground">Start your submission</p>
+                      </Link>
+                      <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Dashboard</div>
+                        <p className="text-sm text-muted-foreground">Track your submissions</p>
+                      </Link>
+                      <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Dashboard</div>
+                        <p className="text-sm text-muted-foreground">Review assignments</p>
+                      </Link>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                  Contact & Help
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
+                    <div className="space-y-1">
+                      <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact Us</div>
+                        <p className="text-sm text-muted-foreground">Get in touch with us</p>
+                      </Link>
+                      <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
+                        <p className="text-sm text-muted-foreground">Common questions</p>
+                      </Link>
                     </div>
                   </div>
                 </NavigationMenuContent>
@@ -202,11 +207,6 @@ const Header = () => {
                 </Button>
               </Link>
             )}
-            <Link to="/submit" className="hidden md:inline-flex">
-              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Submit
-              </Button>
-            </Link>
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -311,17 +311,7 @@ const Header = () => {
                                           {link.label}
                                         </span>
                                       </div>
-                                      <div className="flex items-center gap-2">
-                                        {link.badge && (
-                                          <Badge 
-                                            variant="secondary" 
-                                            className="bg-primary/10 text-primary text-xs px-2 py-0.5"
-                                          >
-                                            {link.badge}
-                                          </Badge>
-                                        )}
-                                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                                      </div>
+                                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                                     </Link>
                                   </motion.div>
                                 ))}
@@ -334,26 +324,13 @@ const Header = () => {
                   </div>
 
                   {/* Footer Actions */}
-                  <motion.div 
-                    className="p-6 border-t border-border/50 space-y-3 bg-gradient-accent"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.3 }}
-                  >
-                    <Link
-                      to="/submit"
-                      onClick={() => setIsOpen(false)}
-                      className="block"
+                  {!user && (
+                    <motion.div 
+                      className="p-6 border-t border-border/50 bg-gradient-accent"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.3 }}
                     >
-                      <Button 
-                        className="w-full bg-gradient-cyan text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-                        size="lg"
-                      >
-                        <Send className="w-4 h-4 mr-2" />
-                        Submit Manuscript
-                      </Button>
-                    </Link>
-                    {!user && (
                       <Link
                         to="/auth"
                         onClick={() => setIsOpen(false)}
@@ -368,8 +345,8 @@ const Header = () => {
                           Sign In / Register
                         </Button>
                       </Link>
-                    )}
-                  </motion.div>
+                    </motion.div>
+                  )}
                 </motion.nav>
               </SheetContent>
             </Sheet>
