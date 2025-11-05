@@ -19,9 +19,10 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-banner-foreground/80 text-sm leading-relaxed mb-4">
-              African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. 
-              A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 
-              short communications and case reports in veterinary, biomedical and animal sciences. Published twice yearly.
+              African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of
+              Jos, Nigeria. A peer-reviewed, international and open access journal publishing high-quality original
+              research articles, reviews, short communications and case reports in veterinary, biomedical and animal
+              sciences. Published twice yearly.
             </p>
             <div className="flex flex-col gap-2 text-sm">
               <div className="flex items-center gap-2">
@@ -44,27 +45,42 @@ const Footer = () => {
             <h3 className="font-semibold mb-5 text-banner-foreground">Browse</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/current-issue" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/current-issue"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Current Issue
                 </Link>
               </li>
               <li>
-                <Link to="/archives" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/archives"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Archives
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/about"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   About the Journal
                 </Link>
               </li>
               <li>
-                <Link to="/editorial-board" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/editorial-board"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Editorial Board
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/news"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   News & Updates
                 </Link>
               </li>
@@ -76,22 +92,34 @@ const Footer = () => {
             <h3 className="font-semibold mb-5 text-banner-foreground">For Authors</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/submit" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/submit"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Submit Manuscript
                 </Link>
               </li>
               <li>
-                <Link to="/for-authors" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/for-authors"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Author Guidelines
                 </Link>
               </li>
               <li>
-                <Link to="/policies" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/policies"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Policies & Ethics
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block">
+                <Link
+                  to="/contact"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
                   Contact Editorial Office
                 </Link>
               </li>
@@ -106,7 +134,10 @@ const Footer = () => {
                 <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div className="flex flex-col gap-1">
                   <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
-                  <a href="mailto:AJVSc@unijos.edu.ng" className="text-banner-foreground/70 hover:text-primary transition-smooth">
+                  <a
+                    href="mailto:ajvsc@unijos.edu.ng"
+                    className="text-banner-foreground/70 hover:text-primary transition-smooth"
+                  >
                     AJVSc@unijos.edu.ng
                   </a>
                 </div>
@@ -123,9 +154,12 @@ const Footer = () => {
                 <div className="flex flex-col">
                   <span className="text-banner-foreground/90 font-medium mb-1">Address</span>
                   <span className="text-banner-foreground/70 leading-relaxed">
-                    Faculty of Veterinary Medicine<br />
-                    University of Jos<br />
-                    P.M.B 2084, Jos, Plateau State<br />
+                    Faculty of Veterinary Medicine
+                    <br />
+                    University of Jos
+                    <br />
+                    P.M.B 2084, Jos, Plateau State
+                    <br />
                     Nigeria
                   </span>
                 </div>
