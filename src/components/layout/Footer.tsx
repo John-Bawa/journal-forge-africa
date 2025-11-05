@@ -138,7 +138,7 @@ const Footer = () => {
                     href="mailto:ajvsc@unijos.edu.ng"
                     className="text-banner-foreground/70 hover:text-primary transition-smooth"
                   >
-                    AJVSc@unijos.edu.ng
+                    ajvsc@unijos.edu.ng
                   </a>
                 </div>
               </li>
