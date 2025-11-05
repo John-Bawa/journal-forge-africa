@@ -1,98 +1,21 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
 import ajvsLogo from "@/assets/ajvs-logo.png";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { OJSRedirectNotice } from "@/components/ojs/OJSRedirectNotice";
+import { getOJSLink } from "@/config/ojs";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 const Auth = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    // Auto-redirect to OJS login after 3 seconds
+    const timer = setTimeout(() => {
+      window.location.href = getOJSLink('LOGIN');
+    }, 3000);
 
-  const [signInData, setSignInData] = useState({ email: "", password: "" });
-  const [signUpData, setSignUpData] = useState({
-    email: "",
-    password: "",
-    fullName: "",
-    institution: "",
-    orcid: "",
-  });
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: signInData.email,
-        password: signInData.password,
-      });
-
-      if (error) throw error;
-
-      if (data.user) {
-        toast.success("Welcome back!");
-        // Redirect to intended destination or dashboard
-        const redirectTo = sessionStorage.getItem("redirectAfterLogin") || "/dashboard";
-        sessionStorage.removeItem("redirectAfterLogin");
-        navigate(redirectTo);
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to sign in");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: signUpData.email,
-        password: signUpData.password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`,
-          data: {
-            full_name: signUpData.fullName,
-            institution: signUpData.institution,
-            orcid: signUpData.orcid,
-          },
-        },
-      });
-
-      if (authError) throw authError;
-
-      if (authData.user) {
-        // Create profile
-        const { error: profileError } = await supabase.from("profiles").insert({
-          id: authData.user.id,
-          email: signUpData.email,
-          full_name: signUpData.fullName,
-          institution: signUpData.institution,
-          orcid: signUpData.orcid,
-        });
-
-        if (profileError) throw profileError;
-
-        toast.success("Account created successfully! An admin will assign your role.");
-        // Redirect to intended destination or dashboard
-        const redirectTo = sessionStorage.getItem("redirectAfterLogin") || "/dashboard";
-        sessionStorage.removeItem("redirectAfterLogin");
-        navigate(redirectTo);
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to create account");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-secondary/30 py-12 px-4">
@@ -106,118 +29,51 @@ const Auth = () => {
         </div>
       </Link>
 
-      <Card className="w-full max-w-md shadow-elegant">
+      <Card className="w-full max-w-2xl shadow-elegant">
         <CardHeader>
-          <CardTitle className="text-2xl font-serif">Welcome</CardTitle>
-          <CardDescription>Sign in to your account or create a new one</CardDescription>
+          <CardTitle className="text-2xl font-serif">Account Management</CardTitle>
+          <CardDescription>All user accounts and manuscript submissions are managed through our OJS platform</CardDescription>
         </CardHeader>
-        <CardContent>
-          <Tabs defaultValue="signin" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
-            </TabsList>
+        <CardContent className="space-y-6">
+          <Alert>
+            <Info className="h-4 w-4" />
+            <AlertDescription>
+              AJVS uses Open Journal Systems (OJS) for all manuscript-related activities including submission, peer review, and author/reviewer accounts.
+            </AlertDescription>
+          </Alert>
 
-            <TabsContent value="signin">
-              <form onSubmit={handleSignIn} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="signin-email">Email</Label>
-                  <Input
-                    id="signin-email"
-                    type="email"
-                    placeholder="your.email@institution.edu"
-                    value={signInData.email}
-                    onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signin-password">Password</Label>
-                  <Input
-                    id="signin-password"
-                    type="password"
-                    value={signInData.password}
-                    onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Signing in..." : "Sign In"}
-                </Button>
-              </form>
-            </TabsContent>
+          <div className="space-y-4">
+            <OJSRedirectNotice
+              title="Login to Your Account"
+              description="If you already have an OJS account for manuscript submission, review, or editorial tasks, click below to sign in."
+              actionLabel="Go to Login"
+              actionUrl={getOJSLink('LOGIN')}
+            />
 
-            <TabsContent value="signup">
-              <form onSubmit={handleSignUp} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="signup-name">Full Name</Label>
-                  <Input
-                    id="signup-name"
-                    placeholder="Dr. Jane Smith"
-                    value={signUpData.fullName}
-                    onChange={(e) => setSignUpData({ ...signUpData, fullName: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
-                  <Input
-                    id="signup-email"
-                    type="email"
-                    placeholder="your.email@institution.edu"
-                    value={signUpData.email}
-                    onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-institution">Institution</Label>
-                  <Input
-                    id="signup-institution"
-                    placeholder="University Name"
-                    value={signUpData.institution}
-                    onChange={(e) => setSignUpData({ ...signUpData, institution: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-orcid">ORCID (Optional)</Label>
-                  <Input
-                    id="signup-orcid"
-                    placeholder="0000-0000-0000-0000"
-                    value={signUpData.orcid}
-                    onChange={(e) => setSignUpData({ ...signUpData, orcid: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-password">Password</Label>
-                  <Input
-                    id="signup-password"
-                    type="password"
-                    value={signUpData.password}
-                    onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Creating account..." : "Create Account"}
-                </Button>
-              </form>
-            </TabsContent>
-          </Tabs>
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Or</span>
+              </div>
+            </div>
+
+            <OJSRedirectNotice
+              title="Create a New Account"
+              description="New to AJVS? Register for an OJS account to submit manuscripts, participate in peer review, or manage editorial tasks."
+              actionLabel="Register Now"
+              actionUrl={getOJSLink('REGISTER')}
+            />
+          </div>
+
+          <div className="pt-4 border-t">
+            <p className="text-sm text-muted-foreground text-center">
+              You will be automatically redirected to the OJS platform in 3 seconds...
+            </p>
+          </div>
         </CardContent>
       </Card>
-
-      <p className="mt-6 text-sm text-muted-foreground text-center">
-        By continuing, you agree to our{" "}
-        <Link to="/terms" className="text-primary hover:underline">
-          Terms of Service
-        </Link>{" "}
-        and{" "}
-        <Link to="/privacy" className="text-primary hover:underline">
-          Privacy Policy
-        </Link>
-      </p>
     </div>
   );
 };

@@ -1,13 +1,16 @@
 /**
  * OJS Integration Configuration
- * Update OJS_BASE_URL once your OJS installation is complete
+ * Live OJS installation at https://journal.africanjournalvetsci.org
  */
 
-// Placeholder URL - Update this with your actual OJS installation URL
-export const OJS_BASE_URL = import.meta.env.VITE_OJS_URL || 'https://your-ojs-installation.org';
+// Live OJS URL
+export const OJS_BASE_URL = import.meta.env.VITE_OJS_URL || 'https://journal.africanjournalvetsci.org';
 
 // OJS Route paths
 export const OJS_ROUTES = {
+  // Home
+  HOME: `${OJS_BASE_URL}/index.php/ajvs`,
+  
   // Author workflows
   SUBMIT_MANUSCRIPT: `${OJS_BASE_URL}/index.php/ajvs/author/submit`,
   AUTHOR_DASHBOARD: `${OJS_BASE_URL}/index.php/ajvs/author`,
@@ -25,6 +28,14 @@ export const OJS_ROUTES = {
   // Public pages
   CURRENT_ISSUE: `${OJS_BASE_URL}/index.php/ajvs/issue/current`,
   ARCHIVES: `${OJS_BASE_URL}/index.php/ajvs/issue/archive`,
+  ANNOUNCEMENTS: `${OJS_BASE_URL}/index.php/ajvs/announcement`,
+  
+  // About pages
+  ABOUT: `${OJS_BASE_URL}/index.php/ajvs/about`,
+  SUBMISSION_GUIDELINES: `${OJS_BASE_URL}/index.php/ajvs/about/submissions`,
+  EDITORIAL_TEAM: `${OJS_BASE_URL}/index.php/ajvs/about/editorialMasthead`,
+  PRIVACY: `${OJS_BASE_URL}/index.php/ajvs/about/privacy`,
+  CONTACT: `${OJS_BASE_URL}/index.php/ajvs/about/contact`,
 } as const;
 
 /**
