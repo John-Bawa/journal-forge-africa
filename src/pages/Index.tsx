@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
 import { motion } from "framer-motion";
+import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 
 const Index = () => {
   return (
@@ -225,26 +226,15 @@ const Index = () => {
                 Recent articles from our current issue
               </p>
             </div>
-            <a 
-              href="https://journal.africanjournalvetsci.org/index.php/ajvs/issue/current" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
+            <Link to="/current-issue">
               <Button variant="outline" size="lg" className="min-h-[48px]">
-                View Current Issue of AJVS
+                View All Articles
               </Button>
-            </a>
+            </Link>
           </div>
 
-          {/* OJS Current Issue Widget */}
-          <div className="mb-8">
-            <iframe 
-              src="https://journal.africanjournalvetsci.org/index.php/ajvs/issue/current"
-              style={{ border: 'none', width: '100%', minHeight: '600px', maxWidth: '100%' }}
-              title="Current Issue - African Journal of Veterinary Sciences"
-              className="rounded-lg shadow-card bg-background"
-            />
-          </div>
+          {/* OJS Current Issue Component - API-driven */}
+          <OJSCurrentIssueSection />
         </div>
       </section>
 
