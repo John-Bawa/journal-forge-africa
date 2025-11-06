@@ -202,16 +202,22 @@ const Header = () => {
             <ThemeToggle />
             {!user && (
               <>
-                <Link to="/auth" className="hidden md:inline-flex">
-                  <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/auth" className="hidden md:inline-flex">
-                  <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Register
-                  </Button>
-                </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="hidden md:inline-flex border-primary/30 text-primary hover:bg-primary/10"
+                  onClick={() => window.location.href = getOJSLink('LOGIN')}
+                >
+                  Login
+                </Button>
+                <Button 
+                  variant="default" 
+                  size="sm" 
+                  className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90"
+                  onClick={() => window.location.href = getOJSLink('REGISTER')}
+                >
+                  Register
+                </Button>
               </>
             )}
 
@@ -338,34 +344,30 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.3 }}
                     >
-                      <Link
-                        to="/auth"
-                        className="block"
-                        onClick={() => setIsOpen(false)}
+                      <Button 
+                        variant="outline" 
+                        className="w-full border-primary/30 text-primary hover:bg-primary/10"
+                        size="lg"
+                        onClick={() => {
+                          setIsOpen(false);
+                          window.location.href = getOJSLink('LOGIN');
+                        }}
                       >
-                        <Button 
-                          variant="outline" 
-                          className="w-full border-primary/30 text-primary hover:bg-primary/10"
-                          size="lg"
-                        >
-                          <User className="w-4 h-4 mr-2" />
-                          Login
-                        </Button>
-                      </Link>
-                      <Link
-                        to="/auth"
-                        className="block"
-                        onClick={() => setIsOpen(false)}
+                        <User className="w-4 h-4 mr-2" />
+                        Login
+                      </Button>
+                      <Button 
+                        variant="default" 
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                        size="lg"
+                        onClick={() => {
+                          setIsOpen(false);
+                          window.location.href = getOJSLink('REGISTER');
+                        }}
                       >
-                        <Button 
-                          variant="default" 
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                          size="lg"
-                        >
-                          <User className="w-4 h-4 mr-2" />
-                          Register
-                        </Button>
-                      </Link>
+                        <User className="w-4 h-4 mr-2" />
+                        Register
+                      </Button>
                     </motion.div>
                   )}
                 </motion.nav>
