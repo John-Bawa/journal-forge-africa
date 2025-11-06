@@ -73,6 +73,52 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
 };
 
 /**
+ * Fetch all published issues from OJS
+ */
+export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
+  try {
+    const response = await fetch(`${OJS_BASE_URL}/api/v1/issues`, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch issues');
+    }
+    
+    const data = await response.json();
+    return data.items || [];
+  } catch (error) {
+    console.error('Error fetching issues:', error);
+    return [];
+  }
+};
+
+/**
+ * Fetch articles for a specific issue
+ */
+export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]> => {
+  try {
+    const response = await fetch(`${OJS_BASE_URL}/api/v1/submissions?issueIds=${issueId}&status=3`, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch articles');
+    }
+    
+    const data = await response.json();
+    return data.items || [];
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    return [];
+  }
+};
+
+/**
  * Fetch announcements from OJS (fallback to RSS if API not available)
  */
 export const fetchAnnouncements = async (): Promise<OJSAnnouncement[]> => {
