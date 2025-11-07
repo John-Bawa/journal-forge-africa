@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
 import { motion } from "framer-motion";
 import amejiPhoto from "@/assets/ameji.jpg";
+import idrisPhoto from "@/assets/idris.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -449,9 +450,13 @@ const EditorialBoard = () => {
                     <div className="flex flex-col items-center text-center">
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: -5 }}
-                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center shadow-lg"
+                        className="w-24 h-24 rounded-full mb-4 shadow-lg overflow-hidden"
                       >
-                        <User className="w-14 h-14 text-white" strokeWidth={1.5} />
+                        <img 
+                          src={idrisPhoto} 
+                          alt={managingEditor.name}
+                          className="w-full h-full object-cover"
+                        />
                       </motion.div>
                       <h4 className="text-xl font-serif font-bold mb-1">{managingEditor.name}</h4>
                       <p className="text-primary font-semibold text-sm mb-2">{managingEditor.position}</p>
