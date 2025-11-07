@@ -5,6 +5,7 @@ import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-re
 import { motion } from "framer-motion";
 import amejiPhoto from "@/assets/ameji.jpg";
 import idrisPhoto from "@/assets/idris.jpg";
+import tankoPhoto from "@/assets/tanko.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -89,6 +90,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Pathology, University of Jos, Nigeria",
       email: "polycarpt@unijos.edu.ng",
       phone: "+2348141215527",
+      orcid: "0000-0003-1459-2564",
+      photo: tankoPhoto,
     },
     {
       name: "Dr Gosomji Innocent",
@@ -522,11 +525,23 @@ const EditorialBoard = () => {
                     <CardContent className="p-4">
                       <div className="flex flex-col items-center text-center">
                         <motion.div
-                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          whileHover={{ rotate: editor.photo ? 0 : 360, scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-banner flex items-center justify-center mb-3 shadow-lg"
+                          className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
+                            editor.photo 
+                              ? 'overflow-hidden' 
+                              : 'bg-gradient-to-br from-primary to-banner flex items-center justify-center'
+                          }`}
                         >
-                          <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                          {editor.photo ? (
+                            <img 
+                              src={editor.photo} 
+                              alt={editor.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                          )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-base mb-1">{editor.name}</h3>
                         {editor.position && (
@@ -547,6 +562,18 @@ const EditorialBoard = () => {
                               <Phone className="w-3 h-3" />
                               {editor.phone}
                             </p>
+                          )}
+                          {editor.orcid && (
+                            <motion.a
+                              whileHover={{ scale: 1.05 }}
+                              href={`https://orcid.org/${editor.orcid}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                              ORCID: {editor.orcid}
+                            </motion.a>
                           )}
                         </div>
                       </div>
