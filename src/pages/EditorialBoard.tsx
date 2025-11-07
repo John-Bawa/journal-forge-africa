@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import amejiPhoto from "@/assets/ameji.jpg";
 import idrisPhoto from "@/assets/idris.jpg";
 import tankoPhoto from "@/assets/tanko.jpg";
+import karayePhoto from "@/assets/karaye.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -76,6 +77,7 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Medicine, University of Jos, Nigeria",
       email: "karayeg@unijos.edu.ng",
       phone: "+2348060926642",
+      photo: karayePhoto,
     },
     {
       name: "Dr Bitrus Asinamai A.",
