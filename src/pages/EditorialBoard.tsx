@@ -13,6 +13,7 @@ import oshaduPhoto from "@/assets/oshadu.jpg";
 import asinamaiPhoto from "@/assets/asinamai.png";
 import akinsolaPhoto from "@/assets/akinsola.jpg";
 import omoniwaPhoto from "@/assets/omoniwa.jpg";
+import clementPhoto from "@/assets/clement.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -144,6 +145,8 @@ const EditorialBoard = () => {
       affiliation: "National Veterinary Research Institute, Vom, Plateau State, Nigeria",
       email: "cameseko@yahoo.com",
       phone: "+2348039183988",
+      orcid: "0000-0001-7003-7528",
+      photo: clementPhoto,
     },
   ];
 
