@@ -9,6 +9,7 @@ import tankoPhoto from "@/assets/tanko.jpg";
 import karayePhoto from "@/assets/karaye.jpg";
 import calebPhoto from "@/assets/caleb.jpg";
 import gosomjiPhoto from "@/assets/gosomji.jpg";
+import oshaduPhoto from "@/assets/oshadu.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -112,6 +113,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Parasitology and Entomology, University of Jos, Nigeria",
       email: "oshadud@unijos.edu.ng",
       phone: "+2347031581671",
+      orcid: "0000-0002-1403-6077",
+      photo: oshaduPhoto,
     },
     {
       name: "Dr Alidehou Jerrold Agbankpe",
