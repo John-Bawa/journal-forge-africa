@@ -12,6 +12,7 @@ import gosomjiPhoto from "@/assets/gosomji.jpg";
 import oshaduPhoto from "@/assets/oshadu.jpg";
 import asinamaiPhoto from "@/assets/asinamai.png";
 import akinsolaPhoto from "@/assets/akinsola.jpg";
+import omoniwaPhoto from "@/assets/omoniwa.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -71,6 +72,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Medicine, University of Jos, Nigeria",
       email: "omoniwad@unijos.edu.ng",
       phone: "+2348032765952",
+      orcid: "0000-0002-9485-2081",
+      photo: omoniwaPhoto,
     },
     {
       name: "Prof. Pita Justin",
