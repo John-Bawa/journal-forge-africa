@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import TopBar from "@/components/layout/TopBar";
 import { SEOHead } from "./SEOHead";
 import { fetchAllIssues, fetchIssueArticles, OJSArticle, OJSIssue, getArticleUrl, getArticlePdfUrl } from "@/services/ojsApi";
+import DOMPurify from "dompurify";
 
 const Archives = () => {
   const [issues, setIssues] = useState<OJSIssue[]>([]);
@@ -226,7 +227,7 @@ const Archives = () => {
                             {article.abstract && (
                               <div 
                                 className="text-sm text-muted-foreground line-clamp-2 mb-4"
-                                dangerouslySetInnerHTML={{ __html: article.abstract }}
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.abstract) }}
                               />
                             )}
 
