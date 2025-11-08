@@ -11,6 +11,7 @@ import calebPhoto from "@/assets/caleb.jpg";
 import gosomjiPhoto from "@/assets/gosomji.jpg";
 import oshaduPhoto from "@/assets/oshadu.jpg";
 import asinamaiPhoto from "@/assets/asinamai.png";
+import akinsolaPhoto from "@/assets/akinsola.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -55,6 +56,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Theriogenology and Production, University of Jos, Nigeria",
       email: "akinsolao@unijos.edu.ng",
       phone: "+2348022831192",
+      orcid: "0000-0003-3981-5672",
+      photo: akinsolaPhoto,
     },
     {
       name: "Dr Mohamed Abdelrahman",
