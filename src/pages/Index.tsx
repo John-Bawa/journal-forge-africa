@@ -6,7 +6,7 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
-import ajvscLogo from "@/assets/ajvsc-logo.svg";
+import ajvscLogo from "@/assets/ajvsc-logo.png";
 import { motion } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { getOJSLink } from "@/config/ojs";
