@@ -106,28 +106,19 @@ const Index = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
-              <motion.div
-                className="relative p-4 sm:p-6 bg-white/95 backdrop-blur-sm rounded-full shadow-elegant border-2 border-white/50"
+              <motion.img 
+                src={ajvscLogo} 
+                alt="African Journal of Veterinary Sciences Logo" 
+                className="h-24 sm:h-32 md:h-40 w-auto"
                 animate={{ 
                   y: [0, -8, 0],
-                  boxShadow: [
-                    "0 10px 30px -10px rgba(255, 255, 255, 0.3)",
-                    "0 20px 40px -10px rgba(255, 255, 255, 0.4)",
-                    "0 10px 30px -10px rgba(255, 255, 255, 0.3)"
-                  ]
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-              >
-                <img 
-                  src={ajvscLogo} 
-                  alt="African Journal of Veterinary Sciences Logo" 
-                  className="h-20 sm:h-28 md:h-36 w-auto"
-                />
-              </motion.div>
+              />
             </motion.div>
 
             {/* ISSN Badge */}
