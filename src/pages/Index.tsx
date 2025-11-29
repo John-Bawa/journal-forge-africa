@@ -6,6 +6,7 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import ajvscLogo from "@/assets/ajvsc-logo.svg";
+import heroBuilding from "@/assets/hero-building.jpg";
 import { motion } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { getOJSLink } from "@/config/ojs";
@@ -18,21 +19,17 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
-        {/* Background Video */}
+        {/* Background Image */}
         <div className="absolute inset-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
+          <img 
+            src={heroBuilding}
+            alt="Faculty of Veterinary Medicine Building"
             className="w-full h-full object-cover"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video>
+          />
         </div>
         
         {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         
         
         {/* Animated pattern overlay with subtle drift */}
