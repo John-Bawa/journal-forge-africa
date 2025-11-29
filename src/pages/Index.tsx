@@ -5,7 +5,7 @@ import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
-import ajvscLogo from "@/assets/ajvsc-logo.svg";
+import ajvscLogo from "@/assets/ajvsc-logo.png";
 import heroBuilding from "@/assets/hero-building.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
