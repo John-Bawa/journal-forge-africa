@@ -27,7 +27,6 @@ const EditorialBoard = () => {
   const deputyEditorInChief = {
     name: "Dr. Ameji, Negedu Onogu",
     title: "Deputy Editor-in-Chief",
-    position: "Associate Professor",
     affiliation: "Department of Veterinary Medicine, University of Jos, Nigeria",
     email: "amejio@unijos.edu.ng",
     phone: "+234 8035907570",
@@ -37,7 +36,6 @@ const EditorialBoard = () => {
   const managingEditor = {
     name: "Dr. Idris Ayodeji Azeez",
     title: "Managing Editor",
-    position: "Senior Lecturer",
     affiliation: "Department of Veterinary Anatomy, University of Jos, Nigeria",
     email: "azeezi@unijos.edu.ng",
     phone: "+234 8034493343",
@@ -47,14 +45,12 @@ const EditorialBoard = () => {
   const associateEditors = [
     {
       name: "Dr Gywa Gideon Deme",
-      position: "Associate Professor",
       affiliation: "Department of Biology, Case West Reserve University, USA",
       email: "gxg277@case.edu",
       phone: "+12163014385",
     },
     {
       name: "Dr. Akinsola Oludayo M.",
-      position: "Associate Professor",
       affiliation: "Department of Theriogenology and Production, University of Jos, Nigeria",
       email: "akinsolao@unijos.edu.ng",
       phone: "+2348022831192",
@@ -69,7 +65,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Omoniwa David Oludare",
-      position: "Senior lecturer",
       affiliation: "Department of Veterinary Medicine, University of Jos, Nigeria",
       email: "omoniwad@unijos.edu.ng",
       phone: "+2348032765952",
@@ -84,7 +79,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Karaye Gloria Pisha",
-      position: "Associate professor",
       affiliation: "Department of Veterinary Medicine, University of Jos, Nigeria",
       email: "karayeg@unijos.edu.ng",
       phone: "+2348060926642",
@@ -92,7 +86,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Bitrus Asinamai A.",
-      position: "Senior Lecturer",
       affiliation: "Department of Veterinary Microbiology, University of Jos, Nigeria",
       email: "bitrusaa@unijos.edu.ng",
       phone: "+2348065680664",
@@ -101,7 +94,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Polycarp Tanko",
-      position: "Associate Professor",
       affiliation: "Department of Veterinary Pathology, University of Jos, Nigeria",
       email: "polycarpt@unijos.edu.ng",
       phone: "+2348141215527",
@@ -110,7 +102,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Gosomji Innocent",
-      position: "Senior Lecturer",
       affiliation: "Department of Veterinary Anatomy, University of Jos, Nigeria",
       email: "gosomjii@unijos.edu.ng",
       phone: "+2348136070134",
@@ -119,7 +110,6 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Oshadu David Omagbe",
-      position: "Lecturer I",
       affiliation: "Department of Veterinary Parasitology and Entomology, University of Jos, Nigeria",
       email: "oshadud@unijos.edu.ng",
       phone: "+2347031581671",
@@ -134,14 +124,12 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Chidiebere Uchendu",
-      position: "Associate Professor",
       affiliation: "Department of Veterinary Pharmarcology and Toxicology, University of Jos, Nigeria",
       email: "ucheduc@unijos.edu.ng",
       phone: "+2348063234452",
     },
     {
       name: "Dr. Meseko Clement A.",
-      position: "Associate Professor/Director of Research",
       affiliation: "National Veterinary Research Institute, Vom, Plateau State, Nigeria",
       email: "cameseko@yahoo.com",
       phone: "+2348039183988",
@@ -431,7 +419,6 @@ const EditorialBoard = () => {
                         />
                       </motion.div>
                       <h4 className="text-xl font-serif font-bold mb-1">{deputyEditorInChief.name}</h4>
-                      <p className="text-primary font-semibold text-sm mb-2">{deputyEditorInChief.position}</p>
                       <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{deputyEditorInChief.affiliation}</p>
                       <div className="space-y-2 w-full">
                         <motion.a
@@ -485,7 +472,6 @@ const EditorialBoard = () => {
                         />
                       </motion.div>
                       <h4 className="text-xl font-serif font-bold mb-1">{managingEditor.name}</h4>
-                      <p className="text-primary font-semibold text-sm mb-2">{managingEditor.position}</p>
                       <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{managingEditor.affiliation}</p>
                       <div className="space-y-2 w-full">
                         <motion.a
@@ -567,9 +553,6 @@ const EditorialBoard = () => {
                           )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-base mb-1">{editor.name}</h3>
-                        {editor.position && (
-                          <p className="text-primary font-semibold text-xs mb-1.5">{editor.position}</p>
-                        )}
                         <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{editor.affiliation}</p>
                         <div className="space-y-2 w-full">
                           <motion.a
