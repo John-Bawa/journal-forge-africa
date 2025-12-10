@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import ajvsLogo from "@/assets/ajvsc-logo.png";
+import ajvsLogo from "@/assets/ajvsc-logo-new.png";
 import { getOJSLink } from "@/config/ojs";
 import { motion, AnimatePresence } from "framer-motion";
 import {
