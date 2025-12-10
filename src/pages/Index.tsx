@@ -9,7 +9,7 @@ import {
   Target, Microscope, Heart, GraduationCap, Send, Search, 
   Building2, ExternalLink 
 } from "lucide-react";
-import ajvscLogo from "@/assets/ajvsc-logo.png";
+import ajvscLogo from "@/assets/ajvsc-logo-new.png";
 import heroBuilding from "@/assets/hero-building.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
@@ -111,14 +111,8 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               <motion.div
-                className="relative p-4 sm:p-6 bg-white/95 backdrop-blur-sm rounded-full shadow-elegant border-2 border-white/50"
                 animate={{ 
                   y: [0, -8, 0],
-                  boxShadow: [
-                    "0 10px 30px -10px rgba(255, 255, 255, 0.3)",
-                    "0 20px 40px -10px rgba(255, 255, 255, 0.4)",
-                    "0 10px 30px -10px rgba(255, 255, 255, 0.3)"
-                  ]
                 }}
                 transition={{
                   duration: 3,
@@ -129,7 +123,7 @@ const Index = () => {
                 <img 
                   src={ajvscLogo} 
                   alt="African Journal of Veterinary Sciences Logo" 
-                  className="h-20 sm:h-28 md:h-36 w-auto"
+                  className="h-28 sm:h-36 md:h-44 w-auto drop-shadow-2xl"
                 />
               </motion.div>
             </motion.div>
