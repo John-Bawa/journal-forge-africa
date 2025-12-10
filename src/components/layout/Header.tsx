@@ -73,8 +73,8 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transition-smooth group-hover:scale-105 shadow-md">
-              <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
+            <div className="w-12 h-12 flex items-center justify-center transition-smooth group-hover:scale-105">
+              <img src={ajvsLogo} alt="AJVS Logo" className="w-12 h-12 object-contain drop-shadow-md" />
             </div>
             <div className="flex flex-col">
               <span className="text-foreground font-serif text-lg font-bold leading-tight">
@@ -265,8 +265,8 @@ const Header = () => {
                   {/* Header with Logo */}
                   <div className="p-6 border-b border-border/50">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-gradient-cyan flex items-center justify-center shadow-lg">
-                        <img src={ajvsLogo} alt="AJVS" className="w-10 h-10 object-contain" />
+                      <div className="w-12 h-12 flex items-center justify-center">
+                        <img src={ajvsLogo} alt="AJVS" className="w-12 h-12 object-contain drop-shadow-lg" />
                       </div>
                       <div>
                         <h2 className="font-serif text-lg font-bold text-foreground">AJVS</h2>
