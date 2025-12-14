@@ -64,7 +64,7 @@ export const OJSArticleCard = ({ article, index = 0 }: OJSArticleCardProps) => {
         
         <CardContent className="flex-1 flex flex-col">
           {truncatedAbstract && (
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed drop-cap">
               {truncatedAbstract}
             </p>
           )}
