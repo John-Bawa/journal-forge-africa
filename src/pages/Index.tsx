@@ -44,99 +44,47 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-12 md:py-20 overflow-hidden">
+      <section className="relative bg-primary py-16 md:py-24 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.img 
             src={heroBuilding}
             alt="Faculty of Veterinary Medicine Building"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-20"
             style={{ y: imageY }}
           />
         </div>
         
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/60"></div>
-        
-        
-        {/* Animated pattern overlay with subtle drift */}
-        <motion.div 
-          className="absolute inset-0 opacity-5"
-          animate={{ 
-            backgroundPosition: ['0% 0%', '100% 100%']
-          }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity, 
-            ease: "linear",
-            repeatType: "reverse"
-          }}
-        >
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-        </motion.div>
-        
-        {/* Floating particles effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className={`absolute w-2 h-2 bg-white/10 rounded-full ${i > 2 ? 'hidden sm:block' : ''}`}
-              style={{
-                left: `${15 + i * 15}%`,
-                top: `${20 + (i % 3) * 30}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                x: [0, Math.sin(i) * 20, 0],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [1, 1.5, 1]
-              }}
-              transition={{
-                duration: 4 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5
-              }}
-            />
-          ))}
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 80px)', backgroundSize: '80px 100%' }}></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center sm:text-left">
+          <div className="max-w-4xl mx-auto text-center">
             {/* Logo */}
             <motion.div 
-              className="mb-6 sm:mb-8 flex justify-center sm:justify-start"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-8"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <motion.div
-                animate={{ 
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <img 
-                  src={ajvscLogo} 
-                  alt="African Journal of Veterinary Sciences Logo" 
-                  className="h-28 sm:h-36 md:h-44 w-auto drop-shadow-2xl"
-                />
-              </motion.div>
+              <img 
+                src={ajvscLogo} 
+                alt="African Journal of Veterinary Sciences Logo" 
+                className="h-24 sm:h-32 md:h-36 w-auto mx-auto drop-shadow-lg"
+              />
             </motion.div>
 
             {/* ISSN Badge */}
             <motion.div 
-              className="mb-6 sm:mb-8 inline-block"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 inline-block"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-4 sm:px-6 py-2">
-                <span className="text-amber-400 text-xs sm:text-sm font-medium">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded px-4 py-1.5">
+                <span className="text-primary-foreground/90 text-xs sm:text-sm font-medium tracking-wide">
                   e-ISSN: 3043-4246
                 </span>
               </div>
@@ -144,41 +92,41 @@ const Index = () => {
 
             {/* Main Title */}
             <motion.h1 
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 sm:mb-6 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-foreground mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              African Journal of Veterinary Sciences
+              African Journal of <br className="hidden sm:block" />Veterinary Sciences
             </motion.h1>
             
             {/* Subtitle */}
             <motion.p 
-              className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-3xl"
+              className="text-base sm:text-lg text-primary-foreground/85 mb-10 leading-relaxed max-w-2xl mx-auto font-body"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              A peer-reviewed, international and open access journal publishing high-quality original research articles, reviews, 
-              short communications and case reports in all aspects of veterinary, biomedical and animal sciences. 
-              Published twice yearly by the Faculty of Veterinary Medicine, University of Jos, Nigeria.
+              A peer-reviewed, open access journal publishing original research in veterinary medicine, 
+              animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, 
+              University of Jos, Nigeria.
             </motion.p>
             
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
+              className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Link to="/submit" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold shadow-xl glow-hover min-h-[48px]">
-                  Submit Your Paper
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg min-h-[48px]">
+                  Submit Manuscript
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/current-issue" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm min-h-[48px]">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 min-h-[48px]">
                   Browse Current Issue
                 </Button>
               </Link>
