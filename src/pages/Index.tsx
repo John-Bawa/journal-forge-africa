@@ -5,7 +5,7 @@ import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { StickyScrollHeader } from "@/components/layout/StickyScrollHeader";
-import { OrnamentalDivider } from "@/components/ui/ornamental-divider";
+
 import { 
   FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
   Target, Microscope, Heart, GraduationCap, Send, Search, 
@@ -216,8 +216,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ornamental Divider */}
-      <OrnamentalDivider variant="flourish" className="bg-background" />
 
       {/* Features Section */}
       <section className="py-12 sm:py-16 md:py-24 bg-secondary/30">
@@ -279,8 +277,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ornamental Divider */}
-      <OrnamentalDivider variant="diamond" className="bg-background" />
 
       {/* Latest Publications & Announcements */}
       <section className="py-12 sm:py-16 md:py-24">
@@ -354,8 +350,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ornamental Divider */}
-      <OrnamentalDivider variant="scroll" className="bg-background" />
 
       {/* Quick Links Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
@@ -400,8 +394,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ornamental Divider */}
-      <OrnamentalDivider variant="simple" className="bg-background" />
 
       {/* Submission Process */}
       <section className="py-12 sm:py-16 md:py-24 bg-secondary/20">
