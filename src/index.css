@@ -287,4 +287,36 @@ Academic Journal Design System - Classic & Scholarly
   .section-separator {
     @apply border-t border-border/40 my-8;
   }
+  
+  /* Academic Drop Cap for article abstracts */
+  .drop-cap::first-letter {
+    @apply float-left font-serif font-bold text-primary;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.12em;
+    padding-top: 0.08em;
+    margin-bottom: -0.15em;
+  }
+  
+  .drop-cap-ornate::first-letter {
+    @apply float-left font-serif font-bold text-primary;
+    font-size: 4em;
+    line-height: 0.75;
+    padding-right: 0.15em;
+    padding-top: 0.05em;
+    margin-bottom: -0.2em;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .drop-cap-boxed::first-letter {
+    @apply float-left font-serif font-bold bg-primary text-primary-foreground;
+    font-size: 3em;
+    line-height: 1;
+    padding: 0.15em 0.25em;
+    margin-right: 0.15em;
+    margin-bottom: 0.05em;
+  }
 }
