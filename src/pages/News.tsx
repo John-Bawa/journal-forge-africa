@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -65,6 +66,16 @@ const News = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
+      <SEOHead
+        title="News & Announcements"
+        description="Stay updated with the latest news, announcements, and calls for papers from the African Journal of Veterinary Sciences (AJVS). Find information about special issues, conferences, and editorial updates."
+        canonicalUrl="https://africanjournalvetsci.org/news"
+        keywords={["AJVS news", "journal announcements", "call for papers", "veterinary conferences", "special issues", "editorial updates"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "News", url: "https://africanjournalvetsci.org/news" }
+        ]}
+      />
       <Header />
       
       <main className="flex-1 py-16">

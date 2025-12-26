@@ -1,10 +1,21 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
+      <SEOHead
+        title="About AJVS"
+        description="Learn about the African Journal of Veterinary Sciences (AJVS) - our mission, scope, editorial policy, and commitment to advancing veterinary research across Africa. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria."
+        canonicalUrl="https://africanjournalvetsci.org/about"
+        keywords={["about AJVS", "journal mission", "veterinary research Africa", "editorial policy", "open access journal", "University of Jos"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "About", url: "https://africanjournalvetsci.org/about" }
+        ]}
+      />
       <Header />
 
       <main className="flex-1 py-16">

@@ -1,14 +1,23 @@
+# Robots.txt for African Journal of Veterinary Sciences
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://africanjournalvetsci.org/sitemap.xml
+
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Scholar
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
+# Disallow private areas
+Disallow: /dashboard
+Disallow: /manuscripts
+Disallow: /submit
+Disallow: /auth
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+Crawl-delay: 1

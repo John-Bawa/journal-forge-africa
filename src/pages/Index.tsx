@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
-
+import { SEOHead } from "./SEOHead";
 
 import { 
   FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
@@ -42,6 +42,15 @@ const Index = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Home"
+        description="African Journal of Veterinary Sciences (AJVS) - A peer-reviewed, open access journal publishing original research in veterinary medicine, animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. e-ISSN: 3043-4246"
+        canonicalUrl="https://africanjournalvetsci.org"
+        keywords={["veterinary journal", "animal health research", "open access", "peer-reviewed", "University of Jos", "Nigeria", "biomedical sciences", "veterinary medicine"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" }
+        ]}
+      />
       <TopBar />
       <Header />
       

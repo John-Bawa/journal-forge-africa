@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
 import { motion } from "framer-motion";
@@ -238,6 +239,16 @@ const EditorialBoard = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEOHead
+        title="Editorial Board"
+        description="Meet the distinguished Editorial Board of the African Journal of Veterinary Sciences (AJVS). Our international team of veterinary science experts ensures the highest standards of peer review and scientific excellence."
+        canonicalUrl="https://africanjournalvetsci.org/editorial-board"
+        keywords={["editorial board", "journal editors", "veterinary scientists", "peer reviewers", "academic editors", "AJVS editors"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "Editorial Board", url: "https://africanjournalvetsci.org/editorial-board" }
+        ]}
+      />
       <Header />
 
       <main className="flex-1 py-16 md:py-20">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -75,6 +76,16 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Contact Us"
+        description="Get in touch with the African Journal of Veterinary Sciences (AJVS) editorial team. Contact us for manuscript inquiries, submission questions, or general information. Located at the Faculty of Veterinary Medicine, University of Jos, Nigeria."
+        canonicalUrl="https://africanjournalvetsci.org/contact"
+        keywords={["contact AJVS", "editorial office", "manuscript inquiries", "University of Jos", "veterinary journal contact"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "Contact", url: "https://africanjournalvetsci.org/contact" }
+        ]}
+      />
       <Header />
 
       <main className="flex-1 py-12">
