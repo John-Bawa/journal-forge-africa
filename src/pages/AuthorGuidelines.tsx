@@ -1,12 +1,23 @@
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { FileText, CheckCircle, AlertCircle, Download, BookOpen, Shield, Users, DollarSign, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const AuthorGuidelines = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
+      <SEOHead
+        title="Author Guidelines"
+        description="Comprehensive guidelines for preparing and submitting manuscripts to the African Journal of Veterinary Sciences (AJVS). Learn about manuscript formatting, submission requirements, ethical guidelines, and publication fees."
+        canonicalUrl="https://africanjournalvetsci.org/for-authors"
+        keywords={["author guidelines", "manuscript submission", "paper format", "veterinary journal submission", "publication guidelines", "peer review process"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "For Authors", url: "https://africanjournalvetsci.org/for-authors" }
+        ]}
+      />
       <TopBar />
       <Header />
       

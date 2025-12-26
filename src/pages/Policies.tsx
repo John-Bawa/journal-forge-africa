@@ -1,10 +1,21 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SEOHead } from "./SEOHead";
 import { Shield, FileCheck, Users, Database, AlertTriangle } from "lucide-react";
 
 const Policies = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
+      <SEOHead
+        title="Journal Policies"
+        description="Publication ethics and policies of the African Journal of Veterinary Sciences (AJVS). Learn about our commitment to COPE guidelines, plagiarism policy, authorship criteria, data availability, and open access licensing."
+        canonicalUrl="https://africanjournalvetsci.org/policies"
+        keywords={["publication ethics", "journal policies", "COPE guidelines", "plagiarism policy", "open access", "authorship criteria", "peer review ethics"]}
+        breadcrumbs={[
+          { name: "Home", url: "https://africanjournalvetsci.org" },
+          { name: "Policies", url: "https://africanjournalvetsci.org/policies" }
+        ]}
+      />
       <Header />
       
       <main className="flex-1 py-16">
